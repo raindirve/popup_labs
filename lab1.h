@@ -27,7 +27,7 @@ vector<int> cover(const pair<double, double> & interval, const iterator_type & b
 
 
 typedef int valtype;
-vector<int> knapsack(int capacity, const & vector<valtype> value, const & vector<int> weight);
+vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<int> & weight);
 
 
 /**
@@ -44,6 +44,16 @@ cout << *current << ' ';
 ++current;
 }
 cout << endl;
+}
+
+template<class iterator_type>
+void printiterr(const iterator_type & begin, const iterator_type & end){
+iterator_type current = begin;
+while(current != end){
+cerr << *current << ' ';
+++current;
+}
+cerr << endl;
 }
  
 	    

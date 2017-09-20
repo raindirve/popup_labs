@@ -14,7 +14,7 @@ int main(){
   while(!cin.eof()){
 
     //TODO whole number double->int conversion should be safe right? denominator 1=2^0
-    int c = int(c);
+    int c = int(C);
     
     int v, w;
     vector<int> vals(n), weis(n);
