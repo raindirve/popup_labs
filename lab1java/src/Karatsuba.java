@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * Java implementation of Karatsuba polynomial multiplication,
@@ -30,37 +30,7 @@ public class Karatsuba {
 //        int[] op2 = new int[]{1, 1, 1, 1};
 //        pmult(target, op1, op2, 4);
 
-        Scanner sc = new Scanner(System.in);
-        int t = Integer.parseInt(sc.nextLine());
-        while(t-->0){
-            int n1, n2;
-            int n = 1;
-            n1 = Integer.parseInt(sc.nextLine());
-            String[] tmp = sc.nextLine().split(" ");
-            n2 = Integer.parseInt(sc.nextLine());
 
-            while(n1 >= n || n2 >= n){ //find smallest power of 2 larger than both degrees
-                n <<= 1;
-            }
-
-            int[] a1 = new int[n], a2 = new int[n];
-            for(int i = 0; i < tmp.length; ++i){
-                a1[i] = Integer.parseInt(tmp[i]);
-            }
-            tmp = sc.nextLine().split(" ");
-            for(int i = 0; i < tmp.length; ++i){
-                a2[i] = Integer.parseInt(tmp[i]);
-            }
-
-            int[] result = pmult_new(a1, a2, n);
-            //find largest non0 value
-            int i = result.length-1;
-            while(i-->0 && result[i] == 0);
-            System.out.println(i);
-            for (int j = 0; j <= i; ++j){
-                System.out.print(result[j] + " ");
-            }
-        }
     }
 
     /**
