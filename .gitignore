@@ -32,6 +32,11 @@
 *.app
 *.bin
 
+# IntelliJ bullshit
+.idea/
+bin/
+*.iml
+
 # emacs autosaves
 *~
 
