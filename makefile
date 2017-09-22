@@ -7,6 +7,12 @@ knapsack:
 
 auf:
 	g++ -Wall -g -O2 -static -std=gnu++11 -o uftest.bin almost_unionfind2.cpp
+	
+fenwick:
+	g++ -Wall -g -O2 -static -std=gnu++11 -o fenwick.bin fenwick.cpp
+	
+polymult:
+	g++ -Wall -g -O2 -static -std=gnu++11 -o polymult.bin polymult.cpp
 
 r: default
 	./a.out
