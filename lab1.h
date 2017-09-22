@@ -23,19 +23,23 @@ using namespace std;
  * returns empty vector on fail
  */
 template<class iterator_type>
-vector<int> cover(const pair<double, double> & interval, const iterator_type & begin, const iterator_type & end);
+vector<int>
+cover
+(const pair<double, double> & interval,
+ const iterator_type & begin,
+ const iterator_type & end);
 
 
-typedef int valtype;
+/*typedef int valtype;
 vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<int> & weight);
-
+*/
 
 /**
 
- */
+ *//*
 template<typename T>
 unsigned int maxIndex(const T* a, unsigned int size);
-
+   */
 template<class iterator_type>
 void printiter(const iterator_type & begin, const iterator_type & end){
 iterator_type current = begin;

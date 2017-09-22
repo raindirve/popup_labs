@@ -9,7 +9,11 @@
  */
 
 template<typename T>
-vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<double, double>>*/ & begin, const T /*iterator<pair<int, int>>*/ & end){
+vector<int>
+cover
+(const pair<double, double> & interval,
+ const T/*iterator<pair<double, double>>*/ & begin,
+ const T /*iterator<pair<int, int>>*/ & end){
 
   //<<start, end>, old_index>
 
@@ -32,7 +36,7 @@ vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<
 
   double current_point = interval.first;
   double target = interval.second;
-  double maxend = 0;
+  double maxend = current_point;
   int maxindex = -1;
   vector<int> chosens;
   for(int i = 0; i < size; ++i){
@@ -41,7 +45,7 @@ vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<
     
     //irrelevant
     if(ivl_end < current_point){ continue;}
-
+    
     //"base" case - no longer covers our point
     if(ivl_start > current_point){
       if(maxend > current_point){
@@ -53,7 +57,7 @@ vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<
 	return vector<int>(0);
       }
     }
-
+    
     //if still right of current - gap we can't cover - fail
     if(ivl_start > current_point){
       return vector<int>(0);
@@ -65,14 +69,15 @@ vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<
       maxindex = candidates[i].second;
       if( ivl_end >= target ){
 	chosens.push_back(maxindex);
-	break;
+	return chosens;
       }
     }
     
     
   }
   //end for
-  return chosens;
+  //  if(candidates[chosens.back()].second < target) return vector<int>(0);
+  return vector<int>(0);
   
 }
 
@@ -81,7 +86,7 @@ vector<int> cover(const pair<double, double> & interval, const T/*iterator<pair<
  * WARNING: UNUSABLE: CONTAINS QUANTUM BUG
  * DOES NOT RETURN CORRECT CORRECT OUTPUT UNLESS CLOSELY MONITORED
  * TODO: debug
- */
+ *//*
 template<typename T>
 unsigned int maxIndex(T* a, unsigned int size){
   exit(662607004);
@@ -100,7 +105,7 @@ unsigned int maxIndex(T* a, unsigned int size){
   }
   return maxi;
 }
-
+   */
 /**
  * Assumes no weights are negative! (Negative values will not matter thanks to the algorithm.)
  * 
@@ -108,7 +113,7 @@ unsigned int maxIndex(T* a, unsigned int size){
  * easily templated.
  * 
  * Can take any type that can be added, subtracted,  transitively compared, and set to -1 and 0.
- */
+ *//*
 typedef int valtype;
 vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<int> & weight){
   int size = weight.size()+1;
@@ -163,7 +168,7 @@ vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<i
 
     }
   }
-  
+   
 #ifdef DEBUG  
   //debug output
   for(xpos = 0; xpos < size; ++xpos){
@@ -182,11 +187,11 @@ vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<i
       maxpos = ypos;
     }
   }
-
+   */
   // DO NOT USE, CONTAINS QUANTUM BUG
   //  int maxpos = maxIndex<valtype>(a[size-1].data(), capacity+1);
   //int maxval = a[size-1][maxpos];
-
+/*
   //backtrack to find included elements, will be reverse sorted by index
   ypos = maxpos;
 #ifdef DEBUG
@@ -204,3 +209,4 @@ vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<i
 
   return backtrack;
 }
+*/
