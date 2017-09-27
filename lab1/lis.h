@@ -1,8 +1,9 @@
 #ifndef ___LIS___
 #define ___LIS___
 /**
-* @author seanw
-* @author michalh
+ * Provides Longest Increasing Subsequence function.
+ * @author Sean Wenström
+ * @author Michal Horemuz
 **/
 
 
@@ -13,7 +14,12 @@
 #include <cmath>
 
 
-
+/**
+ * Given an iterator to a collection of comparables,
+ * and an end iterator,
+ * returns a vector with the indexes of a longest
+ * increasing subsequence of that collection, in increasing order.
+ */
 template<typename IteratorType>
 std::vector<int> lis(const IteratorType & begin, const IteratorType & end) {	
 	std::vector<int> lis_array(end-begin+1,-1); // index of last element of subseq of length i
