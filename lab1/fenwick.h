@@ -2,8 +2,11 @@
 #define ___FENWICK___
 
 /**
-* @author seanw
-* @author michalh
+ * Bit-indexed Fenwick tree implementation for
+ * quick prefix sums.
+ * 
+ * @author seanw
+ * @author michalh
 **/
 
 
@@ -27,16 +30,23 @@ void print_vec(const std::vector<T> & arr) {
 template<typename T>
 class FenwickTree {
 public:
-
+  
+    /**
+     * Constructs the Fenwick tree from a given vector,
+     * maintaining its internal order.
+     */
     FenwickTree(std::vector<T> vec) {
         arr = std::vector<T>(vec.size() + 1, 0);
         val = std::vector<T>(vec.size() + 1, 0);
         for (int i = 0; i < vec.size(); ++i) {
             update(i, vec[i]);
-			val[i+1] = vec[i];
+            val[i+1] = vec[i];
         }
     }
 
+    /**
+     * Outputs the prefix sum of the given index, inclusive.
+     */
     T prefix_sum(int idx) {
         ++idx;
         T ans = 0;
@@ -47,6 +57,10 @@ public:
         return ans;
     }
 
+    /**
+     * Sets the new value of the element at
+     * index idx to x, updating the sums.
+     */
     void update(int idx, T x) {
         ++idx;
         int dx = x - val[idx];
@@ -57,8 +71,12 @@ public:
             idx += idx & -idx;
         }
     }
-	
-	void add(int idx, T dx) {
+
+    /**
+     * Adds the provided difference to the element
+     * at index idx, updating sums.
+     */
+    void add(int idx, T dx) {
         ++idx;
         val[idx] += dx;
         while (idx < arr.size()) {
@@ -68,6 +86,10 @@ public:
         }
     }	
 
+    /**
+     * Prints the internal arrays for the values
+     * and the partial sums. Primarily for debugging purposes.
+     */
     void print() {
         print_vec(val);
         print_vec(arr);
@@ -83,30 +105,6 @@ private:
 
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
