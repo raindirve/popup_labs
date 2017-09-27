@@ -2,7 +2,8 @@
 #define ___POLYMULT___
 
 /**
- * Provides functions 
+ * Provides functions for Fast Fourier Transform
+ * and inverse, as well as polynomial multiplication.
  * 
  * @author seanw
  * @author michalh
