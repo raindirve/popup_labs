@@ -2,11 +2,10 @@
 #define ___INTERVAL_COVER___
 
 /**
+ * Implements a function for interval cover.
+ *
  * @author Michal Horemuz michalh
  * @author Sean Wenstrom seanw
- *
- * WIP version of popup17 lab 1 implementation.
- * "Master document" - may be split for final version. 
  */
 
 #include <iterator>
@@ -19,22 +18,28 @@
 
 using namespace std;
 
+/**
+ * Outputs the indexes of the minimal set of intervals from 
+ * the supplied collection, that inclusively covers the entire
+ * given interval.
+ *
+ * Takes intervals in a pair<double, double> form, an 
+ * iterator to a collection of pair<double, double> intervals,
+ * and an end iterator for the collection.
+ *
+ * Returns an empty vector on fail.
+ */
 template<class iterator_type>
 vector<int> cover(const pair<double, double> & interval, const iterator_type & begin, const iterator_type & end);
 
-/**
- * returns empty vector on fail
- */
 template<class iterator_type>
 vector<int> cover(const pair<double, double> & interval, const iterator_type & begin, const iterator_type & end) {
 	size_t size = end - begin;
 
 	vector<pair<pair<double, double>, int>> candidates(size);
 
-	//  vector<int> indices(size);
-
+	
 	iterator_type current = begin;
-	//  iterator<pair<int, int>> current = begin;
 	for (int i = 0; i < size; ++i) {
 		candidates[i] = pair<pair<double, double>, int>(*current, i);
 		++current;
@@ -51,24 +56,22 @@ vector<int> cover(const pair<double, double> & interval, const iterator_type & b
 	for (int i = 0; i < size; ++i) {
 		double ivl_start = candidates[i].first.first;
 		double ivl_end = candidates[i].first.second;
-		//irrelevant
+		//irrelevant element
 		if (ivl_end < current_point) { continue; }
 
-		if (ivl_start > current_point) { // current interval starts after curretn point
-			if (maxend < current_point) { // no ivl could cover the point
-				return vector<int>(0); // fial
+		if (ivl_start > current_point) { // current interval starts after current point
+			if (maxend < current_point) { // no ivl could cover the current point
+				return vector<int>(0);
 			} else { // we have a winner
 				chosens.push_back(maxindex);
 				current_point = maxend;
-				//std::cout << "chosen " << maxindex << "\n";
 				maxindex = -1;
 			}
 		}
 
 		
-		if (ivl_start <= current_point) { // starts before or at current point => consider interval
+		if (ivl_start <= current_point) { // starts before or at current point => consider this interval
 			if (ivl_end > maxend) {
-				//std::cout << ivl_start << "\n";
 				maxend = ivl_end;
 				maxindex = candidates[i].second;
 				
@@ -82,22 +85,12 @@ vector<int> cover(const pair<double, double> & interval, const iterator_type & b
 		}
 
 	}
-	//end for
-	//  if(candidates[chosens.back()].second < target) return vector<int>(0);
+	
+	// Reaching the end means we haven't completely covered the interval - fail.
 	return vector<int>(0);
 
 }
 
-/*typedef int valtype;
-vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<int> & weight);
-*/
-
-/**
-
- *//*
-template<typename T>
-unsigned int maxIndex(const T* a, unsigned int size);
-   */
 
  
 	    
