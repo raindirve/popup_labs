@@ -2,9 +2,11 @@
 #define ___POLYMULT___
 
 /**
-* @author seanw
-* @author michalh
-**/
+ * Provides functions 
+ * 
+ * @author seanw
+ * @author michalh
+ **/
 
 
 
@@ -16,7 +18,7 @@
 
 
 
-#define PI 3.14159265
+//#define PI 3.14159265
 
 
 void fft(std::valarray<std::complex<double> > & a) { // better use this one
