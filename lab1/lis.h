@@ -1,3 +1,5 @@
+#ifndef ___LIS___
+#define ___LIS___
 /**
 * @author seanw
 * @author michalh
@@ -11,48 +13,12 @@
 #include <cmath>
 
 
-template<typename IteratorType>
-std::vector<int> lis(IteratorType begin, IteratorType end) {	
-	std::vector<int> lis_array(end-begin,1); // longest increasing subseq ending at i
-	std::vector<int> last_index(end-begin,-1); // previous index of subseq ending at i
-	
-	int max_idx = 0;
-	int i = 0;
-	for(IteratorType it = begin;it!=end;++it,++i) {
-		int j = 0;
-		for(IteratorType it2 = begin; it2 != it; ++it2,++j) {
-			if(*it > *it2 && lis_array[i] < lis_array[j] + 1) {
-				lis_array[i] = lis_array[j] + 1;
-				last_index[i] = j;
-				if(lis_array[i] > lis_array[max_idx]) {
-					max_idx = i;
-				}
-			}		
-		}
-	}
-	
-	
-	int max_val = lis_array[max_idx];
-	std::vector<int> ret(max_val);
-	int idx = max_idx;
-	i = 0;
-	while(idx != -1) {
-		ret[i] = idx;		
-		idx = last_index[idx];		
-		++i;		
-	}
-	
-	std::reverse(ret.begin(),ret.end());
-	return ret;
-}
-
-using namespace std;
 
 template<typename IteratorType>
-std::vector<int> lis2(const IteratorType & begin, const IteratorType & end) {	
+std::vector<int> lis(const IteratorType & begin, const IteratorType & end) {	
 	std::vector<int> lis_array(end-begin+1,-1); // index of last element of subseq of length i
 	std::vector<int> last_index(end-begin,-1); // previous index of index in the longest subseq
-	//~ cerr << "hello" << endl;
+
 	lis_array[1] = 0;
 	
 	
@@ -104,48 +70,6 @@ std::vector<int> lis2(const IteratorType & begin, const IteratorType & end) {
 	std::reverse(ret.begin(),ret.end());
 	return ret;
 }
-
-
-
-
-template<typename T>
-std::ostream & operator<<(std::ostream & os, const std::vector<T> & vec) {
-	if(vec.size() == 0) return os;
-	for(int i = 0; i<vec.size()-1; ++i) {
-		os << vec[i] << " ";
-	}		
-	os << vec.back();
-	return os;
-}
-
-
-
-
-
-
-int main() {
-	
-	
-	int n;
-	while(std::cin >> n) {
-		std::vector<int> arr(n);
-		for(int i = 0; i<n; ++i) {
-			std::cin >> arr[i];
-		}
-		
-		std::vector<int> ans = lis2(arr.begin(),arr.end());
-		std::cout << ans.size() << "\n" << ans << "\n";
-		
-	}
-	
-	
-	
-	
-	
-	return 0;
-}
-
-
 
 
 
