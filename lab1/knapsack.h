@@ -12,21 +12,20 @@
  * @author Michal Horemuz michalh 
  * @author Sean Wenstrom seanw
  *
- * WIP version of popup17 lab 1 implementation.
- * "Master document" - may be split for final version.
+ * Solves the knapsack problem. Implemented as exercise in popup17 lab1 at KTH.
  */
 
 
 
 /**
- * Assumes no weights are negative! (Negative values will not matter thanks to the algorithm.)
+ * Assumes no weights are negative!
  * 
- * Currently takes vector<int> as value vector with typedeffability to other, can probably be 
- * easily templated.
+ * Value type is templated, weights are assumed to be ints.
+ * Complexity of O(values.size() * capacity) makes high weights impractical.
  * 
  * Can take any type that can be added, subtracted,  transitively compared, and set to -1 and 0.
  */
-typedef int valtype;
+template<typename valtype>
 vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<int> & weight){
 	int size = weight.size()+1;
 
@@ -47,8 +46,6 @@ vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<i
 	for(xpos = 1; xpos < size; ++xpos){
 		for(ypos = 0; ypos <= capacity; ++ypos){
 			//Question: include this item or no?
-
-			//      cerr << "Internal loop on (" << xpos << "," << ypos << ")" << endl;
 
 			sum = a[xpos-1][ypos];
 			if(a[xpos-1][ypos] == -1) continue; //this cell has not been reached
@@ -82,7 +79,7 @@ vector<int> knapsack(int capacity, const vector<valtype> & value, const vector<i
   
 
   
-  //find highest value on last row
+	//find highest value on last row
 
 	int maxpos = 0, maxval = 0; 
 	for(ypos = 0; ypos <= capacity; ++ypos){
