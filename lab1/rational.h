@@ -9,15 +9,20 @@
 
 typedef long long llong;
 
-std::random_device rd;     
-std::mt19937 rng(rd());    
-
+/**
+ * Returns the GCD of parametrized type.
+ * Implemented here because stdlib version
+ * inconsistent between platforms.
+ */
 template<typename T>
 T gcd(T a, T b) {
 	if (a == 0) return b;
 	return gcd(b % a , a);
 }
 
+/**
+ * Absolute value.
+ */
 template<typename T>
 T absval(const T & val) {
 	return val<0 ? -val : val;
@@ -26,11 +31,16 @@ T absval(const T & val) {
 
 template<typename T>
 struct Rational {
-	Rational() {
+        /**
+         * default initializer 0 = 0/1
+	 */
+        Rational() {
 		numer = 0;
 		denom = 1;
 	}
-
+        /**
+         * Constructs as (n/d)
+         */
 	Rational(T n_, T d_) {
 		if (d_ < 0) {
 			numer = -n_;
@@ -41,13 +51,18 @@ struct Rational {
 		}
 		reduce();
 	}
-
+  
+        /**
+	 * Sets to the whole number, i.e. num = (num/1).
+	 */
 	Rational(T num) {
 		numer = num;
 		denom = 1;
 	}
 
-
+        /**
+         * Reduces the fraction to the simplest possible fraction.
+         */
 	Rational & reduce() {
 		if (numer == 0) {
 			denom = 1;
