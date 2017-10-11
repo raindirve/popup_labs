@@ -66,9 +66,11 @@ std::ostream & operator<<(std::ostream & os, const std::vector<std::vector<T>> &
 	return os;
 }
 
-
-
-
+template<typename T, typename U>
+std::ostream & operator<<(std::ostream & os, const std::pair<T, U> & p) {
+	os << '(' << p.first << ',' << p.second << ')';
+	return os;
+}
 
 
 
