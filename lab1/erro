@@ -1,0 +1,7 @@
+In file included from dijkstra.cpp:1:0:
+graph.h: In instantiation of ‘std::pair<T, std::vector<int> > Graph<T>::backtrack(int, std::unordered_map<int, std::pair<T, int> >&) const [with T = int]’:
+graph.h:46:21:   required from ‘std::pair<T, std::vector<int> > Graph<T>::get_path(int, int) [with T = int]’
+dijkstra.cpp:21:36:   required from here
+graph.h:94:7: error: cannot convert ‘std::unordered_map<int, std::pair<int, int>, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<const int, std::pair<int, int> > > >::mapped_type {aka std::pair<int, int>}’ to ‘int’ in assignment
+    id = came_from[id];
+       ^

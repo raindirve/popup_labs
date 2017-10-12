@@ -30,7 +30,7 @@ typedef long long llong;
 
 template<typename IDType, typename WeightType>
 struct Edge {
-	Edge(const IDType & from_, const IDType & to_, const WeightType & w_, const llong edgeID_ = 0) : from(from_), to(to_), w(w_), edgeID(edgeID_) {}
+	Edge(const IDType & from_ = 0, const IDType & to_ = 0, const WeightType & w_ = 0, const llong edgeID_ = -1) : from(from_), to(to_), w(w_), edgeID(edgeID_) {}
 	
 	IDType from;
 	IDType to;
@@ -49,6 +49,23 @@ struct Edge {
 		return w > other.w;
 	}
 };
+
+
+template <class T>
+inline void hash_combine(std::size_t & seed, const T & v) {
+	std::hash<T> hasher;
+	seed ^= hasher(v) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+}
+
+template<typename IDType, typename WeightType>
+struct EdgeHasher {
+	std::size_t operator()(Edge<IDType, WeightType> const & e) const {
+		std::size_t seed = 0;
+		hash_combine(seed, e.edgeID);
+		return seed;
+	}
+};
+
 
 
 template<typename IDType, typename WeightType>
@@ -125,7 +142,9 @@ struct Graph{
 		add_node(from_id);
 		
 		ret = G_small[from_id].count(to_id) == 0;
-		G[from_id].push_back(E(from_id, to_id, w, next_id++));
+		E e(from_id, to_id, w, next_id++);
+		G[from_id].push_back(e);
+		edges[e.edgeID] = e;
 		if(!ret){// if it exists
 			G_small[from_id][to_id] = std::min(G_small[from_id][to_id], w);
 		} else {
@@ -135,14 +154,33 @@ struct Graph{
 	}
 	
 	bool add_node(const IDType & id){
+		nodes.insert(id);
 		if(exists(id)){
 			return false;
 		} else {
 			G[id] = std::vector<E>();
 			G_small[id] = std::unordered_map<IDType,WeightType>();
 			return true;
-		}
+		}		
 	}
+	
+	std::unordered_set<IDType> node_list() const {
+		return nodes;
+	}
+	
+	std::unordered_map<llong,Edge<IDType,WeightType>> edge_list() const {
+		return edges;
+	}
+	
+	const std::unordered_set<IDType> & node_list_ref() const {
+		return nodes;
+	}
+	
+	const std::unordered_map<llong,Edge<IDType,WeightType>> & edge_list_ref() const {
+		return edges;
+	}
+	
+	
 	
 	Graph(){}
 	
@@ -150,6 +188,8 @@ struct Graph{
 	
 	std::unordered_map<IDType,std::unordered_map<IDType,WeightType> > G_small; //keeps track of smallest weight edge for each
 	std::unordered_map<IDType,std::vector<Edge<IDType,WeightType> > > G;
+	std::unordered_set<IDType> nodes;
+	std::unordered_map<llong,Edge<IDType,WeightType>> edges;
 };
 
 
