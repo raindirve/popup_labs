@@ -23,7 +23,7 @@ typedef long long llong;
  * ////[NodeID -> (ParentID, (WeightIfNotNegCycle, hasNegCycle))]
  *nope
  * 
- * 
+ * Note than unreachable nodes will not be in the backtracking map.
  * 
  * 
  */
@@ -35,71 +35,61 @@ std::unordered_map<IDType,std::pair<IDType, std::pair<WeightType, bool> > shorte
 	
 	std::unordered_map<IDType,IDType> came_from;
 	
-	//~ typedef std::pair<WeightType, bool> WPair;
-	std::unordered_map<IDType,WPair> node_weight;
 	std::unordered_map<IDType, WeightType> node_weight;
+	std::unordered_map<IDType, bool> node_cycle;
 	
 	
 	size_t size = G.n_nodes();
 	came_from[from] = from;
-	node_weight[from] = WPair(0, false);
+	node_weight[from] = 0;
 	
 	for(int i = 0; i < size; ++i){
 		for(auto it = visited.cbegin(); it != visited.cend(); ++it){
 			const IDType & curr = *it;
-			const WPair & cwc = node_weight[curr];
+			const WeightType & cw = node_weight[curr];
 			
 			for(auto neighit = G.smallest_at(*it).cbegin(); neighit != G.smallest_at(*it).cend(); ++neighit){
-				
-				
-				if(node_weight.count(neighit->first) == 0){
-					WPair(cwc.first + 
+				const pair<IDType, WeightType> & targ = *neighit;
+				if(node_weight.count(targ.first) == 0){
+					node_weight[targ.first] = cw + targ.second;
+					new_visited.insert(targ.first);
+					came_from[targ.first] = curr;
+				} else {
+					if(cw + targ.second < node_weight[targ.first]){
+						node_weight[targ.first]  = cw+targ.second;
+						came_from[targ.first] = curr;
+					}	
 				}
-				
-				
-				
+			}
+		}
+		visited = new_visited;
+	}
+	
+	//check for negative cycles
+	for(auto it = visited.cbegin(); it != visited.cend(); ++it){
+		node_cycle[*it] = false;
+	}
+	for(int i = 0; i < visited.size(); ++i){
+		for(auto it = visited.cbegin(); it != visited.cend(); ++it){
+			const IDType & curr = *it;
+			const WeightType & cw = node_weight[curr];
+			
+			for(auto neighit = G.smallest_at(*it).cbegin(); neighit != G.smallest_at(*it).cend(); ++neighit){
+				const pair<IDType, WeightType> & targ = *neighit;
+				if(cw + targ.second < node_weight[targ.first]){
+					node_weight[targ.first]  = cw+targ.second;
+					came_from[targ.first] = curr;
+					node_cycle[targ.first] = true;
+				}
 			}
 		}
 	}
 	
-	while(!q.empty()) {
-		PQ_Node curr = q.top();
-		q.pop();
-		//~ std::cerr << "Just removed " << curr.from << "->" << curr.to  << std::endl;
-		
-		WeightType & cw = curr.w;
-		IDType & cid = curr.to;
-		
-		if(visited.count(cid)>0) continue;
-		visited.insert(cid);
-		
-		came_from[curr.to] = curr.from; 		
-		
-		// get neighbs
-		//~ std::cerr << cid << " is being naughty. \n";
-/* 		const auto neighbs = G.smallest_at(cid);
-		//~ std::cerr << "Neighbs: " << neighbs.size() << std::endl;
-		for(auto it = neighbs.cbegin(); it != neighbs.cend(); ++it) {
-			const auto & n = *it;
-			if(visited.count(n.first) > 0) continue;
-			//~ std::cerr << "Added " << cid << "->" << n.first << std::endl;
-			q.push(PQ_Node(cid, n.first, cw+n.second));			
-		} */
-		
-		const auto neighbs = G[cid];
-		//~ std::cerr << "Neighbs: " << neighbs.size() << std::endl;
-		for(auto it = neighbs.cbegin(); it != neighbs.cend(); ++it) {
-			const auto & n = *it;
-			if(visited.count(n.to) > 0) continue;
-			//~ std::cerr << "Added " << cid << "->" << n.first << std::endl;
-			q.push(PQ_Node(n.from, n.to, cw+n.w));			
-		}
-		
-		
-	}	
 	
+	for(auto it = visited.cbegin(); it != visited.cend(); ++it){
+		
+	}
 	return came_from;
-	
 }
 
 

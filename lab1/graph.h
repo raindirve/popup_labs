@@ -50,6 +50,13 @@ struct Edge {
 	}
 };
 
+
+template<typename IDType, typename WeightType>
+std::ostream & operator<<(std::ostream & os, const Edge<IDType,WeightType> & e) {
+	os << "(" << e.from << "," << e.to << ")";
+	return os;
+}
+
 template<typename IDType, typename WeightType>
 struct Graph{	
 	typedef std::pair<WeightType,IDType> WNode;
