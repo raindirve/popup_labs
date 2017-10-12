@@ -1,128 +1,164 @@
-#ifndef ___L1UTIL___
-#define ___L1UTIL___
+/**
+ * Describes a weighted, directional graph
+ * 
+ * Maps from IDType to weighted neighbour lists. 
+ *
+ * ID-agnostic - any hashable type should be useable as unique vertex IDs.
+ * 
+ * WeightType needs to be a number (at minimum, supports addition and initialization to 0).
+ *
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
 
-#include <iostream>
+#ifndef _POPUP17SM_GRAPH_
+#define _POPUP17SM_GRAPH_
+
+#include <algorithm>
 #include <vector>
-#include <valarray>
-#include <utility>
+#include <iostream> //cerr for debug
 #include <unordered_map>
 #include <unordered_set>
-#include <algorithm>
+#include <utility>
 #include <queue>
 
 
-template<typename T>
-struct Node {
-	Node(int id_) : id(id_) {}
+
+
+typedef long long llong;
+//typedef long long wtype;
+
+template<typename IDType, typename WeightType>
+struct Edge {
+	Edge(const IDType & from_, const IDType & to_, const WeightType & w_, const llong edgeID_ = 0) : from(from_), to(to_), w(w_), edgeID(edgeID_) {}
 	
-	int id;
-	std::vector<std::pair<T,Node*>> neighbors;	
+	IDType from;
+	IDType to;
+	WeightType w;
+	llong edgeID;
+	
+	bool operator==(const Edge & other) const {
+		return edgeID == other.edgeID;
+	}
+		
+	bool operator<(const Edge & other) const {
+		return w < other.w;
+	}	
+
+	bool operator>(const Edge & other) const {
+		return w > other.w;
+	}
 };
 
-
-template<typename T>
-class Graph {
-public:
+template<typename IDType, typename WeightType>
+struct Graph{	
+	typedef std::pair<WeightType,IDType> WNode;
+	typedef std::pair<IDType, WeightType> NWode;
+	typedef Edge<IDType, WeightType> E;
 	
-	Graph(const std::vector<int> & froms, const std::vector<int> & tos, const std::vector<T> & weights) {
-		for(int i = 0; i<froms.size(); ++i) {
-			std::pair<int,std::pair<T,int>> pa = std::pair<int,std::pair<T,int>>(froms[i], std::pair<T,int>(weights[i],tos[i]));
-			nodes.insert(pa);			
-		}
+	// Returns the weighted neighbour list of every outgoing edge from id. (vector of pair < neighborID, edgeWeight >)
+	std::vector<Edge<IDType, WeightType> > & operator[](const IDType & id) {
+		return(G[id]);
+	}
+	
+	// Returns the weighted neighbour list of every outgoing edge from id. (vector of pair < neighborID, edgeWeight >)
+	const std::vector<Edge<IDType, WeightType> > & operator[](const IDType & id)  const {
+		return(G.at(id));
+	}
+	
+	// Returns the weighted neighbour list of the smallest edge to each neighbour. (map neighborID->edgeWeight)
+	std::unordered_map<IDType,WeightType> & smallest_at(const IDType & id) {
+		return(G_small[id]);
+	}
+	
+	// Returns the weighted neighbour list of the smallest edge to each neighbour.  (map neighborID->edgeWeight)
+	const std::unordered_map<IDType,WeightType> & smallest_at(const IDType & id)  const {
+		return(G_small.at(id));
+	}
+	
+	bool exists(const IDType & id) const {
+		return G.count(id) > 0;
+	}
+	
+	bool edge_between(const IDType & i1, const IDType & i2) const {
+		return (exists(i1) && operator[](i1).count(i2) > 0);
 	}
 	
 	/**
-	 * Includes the start element in the path.
+	 * Returns the number of nodes (vertices) in the graph.
 	 * 
-	 * Returns <0, emptyvector> on fail.
+	 * The graph is aware of any node that has been added with 'add_node' or 
+	 * is/has been part of any edge in the graph.
 	 */
-	std::pair<T,std::vector<int>> get_path(int from, int to) const {
-		static int last_from = from;
-		static std::priority_queue<std::pair<T, int>> q;
-		static std::unordered_set<int> visited;
-		static std::unordered_map<int,std::pair<T,int>> came_from;  // maps from id to previous_id and path weight until id
-		if(last_from != from){
-			last_from = from;
-			q.clear();
-			visited.clear();
-			
-			q.push(std::pair<T, int>(0,from));
-			came_from[from] = std::pair<T, int>(0, from);
-		}else{
-			if(visited.count(to)){
-				return backtrack(to, came_from);			
-			}
+	size_t n_nodes() const {
+		return G.size();
+	}
+	
+	/**
+	 * Returns the number of outgoing neighbours for a given node.
+	 */
+	size_t n_neighbors(const IDType & id) const {
+		if(exists(id)) {
+			return G_small[id].size();
+		} else {
+			return 0;
 		}
-		
-		
-		while(!q.empty()) {
-			std::pair<T, int> current = q.top();
-			q.pop();
-			if(visited.count(current.second)) continue;
-			
-			visited.insert(current.second);
-			
-			if(current.second == to){ //win: backtrack
-				return backtrack(to, came_from);
-			}
-			
-			auto neighpair = nodes.equal_range(current.second);
-			for(auto it = neighpair.first; it != neighpair.second; ++it){
-				q.push(std::pair<T, int>(current.first + it->first, it->second)); 
-			}
-		}
-		//we know we've found all nodes reachable from 'from', and not reached 'to'
-		
-		
-
-		
-		
-		
-		
-		return std::pair<T, std::vector<int>>();	
-		
-		
 	}
 	
 	
-	std::vector<std::pair<T,int>> get_neighbors(int id) const {
-		auto pi = nodes.equal_range(id);
+	/**
+	 * Adds an edge to the graph.
+	 * 
+	 * Returns the internal id of the new edge, for hacking purposes.
+	 */
+	llong add_edge(const IDType & from_id, const IDType & to_id, const WeightType & w) {
+		bool ret(false);
 		
-		std::vector<std::pair<T, int>> out(pi.second-pi.first);
-		int i = 0;
-		for(auto it = pi.first; it != pi.second; ++it, ++i) {
-			out[i] = *it;
+		add_node(to_id);
+		add_node(from_id);
+		
+		ret = G_small[from_id].count(to_id) == 0;
+		G[from_id].push_back(E(from_id, to_id, w, next_id++));
+		if(!ret){// if it exists
+			G_small[from_id][to_id] = std::min(G_small[from_id][to_id], w);
+		} else {
+			G_small[from_id][to_id] = w;
 		}
-	
-		return out;
+		return next_id - 1;		
 	}
 	
-	
-	
-	
-private:
-	inline std::pair<T,std::vector<int>> backtrack(int to, const std::unordered_map<int,std::pair<T,int>> & came_from) const {
-		std::vector<int> path;
-		int id = to;
-		T dist = came_from[id].first;				
-		while(came_from[id] != id) {
-			path.push_back(came_from[id].second);
-			id = came_from[id];
+	bool add_node(const IDType & id){
+		if(exists(id)){
+			return false;
+		} else {
+			G[id] = std::vector<E>();
+			G_small[id] = std::unordered_map<IDType,WeightType>();
+			return true;
 		}
-		path.push_back(came_from[id].second);		
-		std::reverse(path.begin(),path.end());				
-		return std::pair<T,std::vector<int>>(dist, path);
 	}
-
-
-
-
-
-
-	std::unordered_multimap<int,std::pair<T,int>> nodes;
 	
+	Graph(){}
 	
+	llong next_id = 0;
+	
+	std::unordered_map<IDType,std::unordered_map<IDType,WeightType> > G_small; //keeps track of smallest weight edge for each
+	std::unordered_map<IDType,std::vector<Edge<IDType,WeightType> > > G;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
