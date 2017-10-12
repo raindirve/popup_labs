@@ -1,3 +1,10 @@
+/**
+ * Contains functions for finding the Single Source Shortest Paths with non-negative weights,
+ * with and without timetables.
+ *
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
 #ifndef _POPUP17SM_SSSP_
 #define _POPUP17SM_SSSP_
 
@@ -17,7 +24,10 @@ typedef long long llong;
 
 
 
-
+/**
+ * Uses Dijkstra's algorithm to find the path to all nodes.
+ * Returns a backtracking graph (NodeID -> ParentID). Weights can be reconstructed by backtracking.
+ */
 template<typename IDType, typename WeightType>
 std::unordered_map<IDType,IDType> shortest_path_nnweights(const Graph<IDType,WeightType> & G, const IDType & from) {
 	
@@ -32,7 +42,6 @@ std::unordered_map<IDType,IDType> shortest_path_nnweights(const Graph<IDType,Wei
 	while(!q.empty()) {
 		PQ_Node curr = q.top();
 		q.pop();
-		//~ std::cerr << "Just removed " << curr.from << "->" << curr.to  << std::endl;
 		
 		WeightType & cw = curr.w;
 		IDType & cid = curr.to;
@@ -42,23 +51,11 @@ std::unordered_map<IDType,IDType> shortest_path_nnweights(const Graph<IDType,Wei
 		
 		came_from[curr.to] = curr.from; 		
 		
-		// get neighbs
-		//~ std::cerr << cid << " is being naughty. \n";
-/* 		const auto neighbs = G.smallest_at(cid);
-		//~ std::cerr << "Neighbs: " << neighbs.size() << std::endl;
-		for(auto it = neighbs.cbegin(); it != neighbs.cend(); ++it) {
-			const auto & n = *it;
-			if(visited.count(n.first) > 0) continue;
-			//~ std::cerr << "Added " << cid << "->" << n.first << std::endl;
-			q.push(PQ_Node(cid, n.first, cw+n.second));			
-		} */
 		
 		const auto neighbs = G[cid];
-		//~ std::cerr << "Neighbs: " << neighbs.size() << std::endl;
 		for(auto it = neighbs.cbegin(); it != neighbs.cend(); ++it) {
 			const auto & n = *it;
 			if(visited.count(n.to) > 0) continue;
-			//~ std::cerr << "Added " << cid << "->" << n.first << std::endl;
 			q.push(PQ_Node(n.from, n.to, cw+n.w));			
 		}
 		
@@ -68,7 +65,10 @@ std::unordered_map<IDType,IDType> shortest_path_nnweights(const Graph<IDType,Wei
 	return came_from;	
 }
 
-
+/**
+ * Uses Dijkstra's algorithm to find the path to all nodes, under the constraint of a supplied timetable.
+ * Returns a backtracking graph (NodeID -> (Weight, ParentID)), since weights cannot be trivially reconstructed.
+ */
 template<typename IDType, typename WeightType>
 std::unordered_map<IDType,std::pair<WeightType, IDType> > shortest_path_nnttweights(const Graph<IDType,WeightType> & G, const IDType & from, const std::unordered_map<llong,std::pair<int,int>> & available) {
 	
