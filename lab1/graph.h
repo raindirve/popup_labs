@@ -185,6 +185,8 @@ struct Graph{
 	Graph(){}
 	
 	llong next_id = 0;
+		
+	WeightType dbg_mst;
 	
 	std::unordered_map<IDType,std::unordered_map<IDType,WeightType> > G_small; //keeps track of smallest weight edge for each
 	std::unordered_map<IDType,std::vector<Edge<IDType,WeightType> > > G;
