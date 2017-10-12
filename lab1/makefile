@@ -1,3 +1,3 @@
 
 default:
-	g++ -Wall -g -static -std=gnu++11 -o "sssp2.o" dijkstratt.cpp
+	g++ -Wall -g -O2 -static -std=gnu++11 -o "sssp.o" ssspnw.cpp
