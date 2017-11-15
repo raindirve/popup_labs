@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <cassert>
 #include <cmath>
 
 typedef long long llong;
@@ -58,6 +58,7 @@ T add_mod(const T & a, const T & b, const T & m) {
 // https://en.wikipedia.org/wiki/Ancient_Egyptian_multiplication#Russian_peasant_multiplication
 template<typename T> 
 T mult_mod(T a, T b, const T & m) {
+	assert(a >= 0 && b >= 0);
 	T ret=0;
 	while(b) {
 		if(b % 2 == 1) {
@@ -66,19 +67,19 @@ T mult_mod(T a, T b, const T & m) {
 		a = (a * 2) % m;
 		b /= 2;
 	}
-	return ret;	
+	return mod(ret,m);	
 }
 
 template<typename T>
 T div_mod(const T & a, const T & b, const T & m) {
 	if (b == 0) return -1;
-	if(a == 0) return 0;	
 	GCD_result g = gcd(b,m);
 	if (g.gcd != 1) {
 		return -1;
 	} else {
+		assert(mult_mod(g.x, b, m) == 1);
 		//std::cout << b << " inverse " << m << " : " << g.x << "\n";
-		return mod(a * g.x, m);
+		return mult_mod(a, g.x, m);
 	}
 }
 
