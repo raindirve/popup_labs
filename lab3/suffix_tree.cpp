@@ -6,9 +6,8 @@ using namespace std;
 
 int main(){
 	std::string s;
-	std::cin >> s;
+	std::getline(cin, s);
 	
-	s = s+'$';
 	SuffixTree st(s);
 	
 	auto root = st.nodes[0];
@@ -20,12 +19,39 @@ int main(){
 	
 	
 
-	std::queue<std::pair<int,int>> q;
-	q.push(std::pair<int,int>(0,0));
+	//~ std::queue<std::pair<int,int>> q;
+	//~ q.push(std::pair<int,int>(0,0));
 	
-	std::cout << s.substr(1,0) << "\n";
+	//~ std::cout << s.substr(1,0) << "\n";
 	
-	dprint(st);
+	
+	//~ dprint(st);
+	
+	
+	//~ string s;
+	//~ string p;
+	
+	//~ s.push_back((char)(-1));
+	//~ s.push_back((char)(-9));
+	//~ s.push_back((char)(-1));
+	//~ s.push_back((char)(-7));
+	//~ s.push_back((char)(-1));
+	//~ s.push_back((char)(-7));
+	//~ s.push_back((char)(-5));
+	
+	//~ SuffixTree st(s);
+	
+	//~ p.push_back((char)(-1));
+	//~ p.push_back((char)(-7));
+	
+	//~ auto vi = st.match(p);
+	//~ return 0;
+	//~ std::sort(vi.begin(), vi.end());
+	//~ for(auto i : vi){
+		//~ cout << i << " ";
+	//~ } 	
+	//~ cout << "\n";
+
 
 	//~ while(!q.empty()) {
 		//~ std::pair<int,int> u = q.front();

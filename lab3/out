@@ -1,0 +1,353 @@
+Node: 0, parent: -1 string:  suffix: -1 link: 0
+  0 0
+  edge:   id: 25
+  edge: x id: 34
+  edge: y id: 23
+  edge: z id: 45
+  edge: { id: 17
+  edge: | id: 8
+  edge: } id: 2
+  edge: ~ id: 6
+Node: 25, parent: 0 string:   suffix: -1 link: 0
+  15 16
+  edge:   id: 107
+  edge: x id: 57
+  edge: y id: 30
+  edge: z id: 109
+  edge: { id: 48
+  edge: | id: 98
+  edge: ~ id: 38
+Node: 34, parent: 0 string: x suffix: -1 link: 0
+  23 24
+  edge: x id: 33
+  edge: { id: 35
+  edge: | id: 114
+Node: 23, parent: 0 string: y suffix: -1 link: 0
+  10 11
+  edge:   id: 85
+  edge: x id: 32
+  edge: y id: 92
+  edge: | id: 15
+  edge: } id: 54
+Node: 45, parent: 0 string: z suffix: -1 link: 0
+  20 21
+  edge:   id: 29
+  edge: y id: 89
+  edge: z id: 88
+  edge: { id: 70
+  edge: } id: 79
+  edge: ~ id: 111
+Node: 17, parent: 0 string: { suffix: -1 link: 0
+  7 8
+  edge:   id: 36
+  edge: y id: 49
+  edge: z id: 75
+  edge: { id: 73
+  edge: } id: 18
+  edge: ~ id: 60
+Node: 8, parent: 0 string: | suffix: -1 link: 8
+  2 3
+  edge: x id: 117
+  edge: y id: 53
+  edge: z id: 82
+  edge: { id: 42
+  edge: | id: 116
+  edge: } id: 64
+  edge: ~ id: 100
+Node: 2, parent: 0 string: } suffix: -1 link: 0
+  0 1
+  edge:   id: 96
+  edge: z id: 78
+  edge: { id: 19
+  edge: | id: 51
+  edge: } id: 1
+  edge: ~ id: 66
+Node: 6, parent: 0 string: ~ suffix: -1 link: 0
+  3 4
+  edge:   id: 104
+  edge: x id: 113
+  edge: y id: 14
+  edge: z id: 28
+  edge: | id: 40
+  edge: ~ id: 12
+Node: 107, parent: 25 string:   suffix: -1 link: 25
+  73 74
+  edge:   id: 106
+  edge: z id: 108
+Node: 57, parent: 25 string: x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 39 link: 0
+  40 -1
+Node: 30, parent: 25 string: y suffix: -1 link: 23
+  16 17
+  edge:   id: 22
+  edge: x id: 31
+Node: 109, parent: 25 string: z suffix: -1 link: 45
+  61 62
+  edge: z id: 87
+  edge: ~ id: 110
+Node: 48, parent: 25 string: {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 32 link: 0
+  33 -1
+Node: 98, parent: 25 string: | suffix: -1 link: 8
+  48 49
+  edge: z id: 68
+  edge: ~ id: 99
+Node: 38, parent: 25 string: ~~ suffix: -1 link: 40
+  18 20
+  edge: z id: 26
+  edge: { id: 39
+Node: 33, parent: 34 string: x{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 23 link: 0
+  24 -1
+Node: 35, parent: 34 string: { ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 24 link: 0
+  25 -1
+Node: 114, parent: 34 string: |{ suffix: -1 link: 8
+  41 43
+  edge: x id: 115
+  edge: ~ id: 58
+Node: 85, parent: 23 string:   suffix: -1 link: 25
+  17 18
+  edge: z id: 86
+  edge: ~ id: 24
+Node: 32, parent: 23 string: xx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 22 link: 0
+  23 -1
+Node: 92, parent: 23 string: y suffix: -1 link: 23
+  64 65
+  edge: y id: 91
+  edge: } id: 93
+Node: 15, parent: 23 string: |{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 10 link: 0
+  11 -1
+Node: 54, parent: 23 string: } suffix: -1 link: 2
+  35 36
+  edge:   id: 94
+  edge: | id: 50
+Node: 29, parent: 45 string:  yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 20 link: 0
+  21 -1
+Node: 89, parent: 45 string: y suffix: -1 link: 23
+  59 60
+  edge:   id: 84
+  edge: y id: 90
+Node: 88, parent: 45 string: zyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 61 link: 0
+  62 -1
+Node: 70, parent: 45 string: { suffix: -1 link: 17
+  31 32
+  edge:   id: 46
+  edge: { id: 71
+Node: 79, parent: 45 string: } suffix: -1 link: 2
+  54 55
+  edge: z id: 77
+  edge: | id: 80
+Node: 111, parent: 45 string: ~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 75 link: 0
+  76 -1
+Node: 36, parent: 17 string:   suffix: -1 link: 25
+  15 16
+  edge: y id: 21
+  edge: { id: 47
+  edge: ~ id: 37
+Node: 49, parent: 17 string: y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 33 link: 0
+  34 -1
+Node: 75, parent: 17 string: z suffix: -1 link: 45
+  30 31
+  edge: { id: 44
+  edge: } id: 76
+Node: 73, parent: 17 string: { suffix: -1 link: 17
+  51 52
+  edge: z id: 74
+  edge: { id: 72
+Node: 18, parent: 17 string: }{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 12 link: 0
+  13 -1
+Node: 60, parent: 17 string: ~~y suffix: -1 link: 62
+  8 11
+  edge: | id: 11
+  edge: ~ id: 61
+Node: 117, parent: 8 string: xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 80 link: 0
+  81 -1
+Node: 53, parent: 8 string: y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 36 link: 0
+  37 -1
+Node: 82, parent: 8 string: z suffix: -1 link: 45
+  49 50
+  edge: y id: 83
+  edge: { id: 69
+Node: 42, parent: 8 string: { suffix: -1 link: 17
+  12 13
+  edge: z id: 43
+  edge: } id: 16
+  edge: ~ id: 59
+Node: 116, parent: 8 string: xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 79 link: 0
+  81 -1
+Node: 64, parent: 8 string: } suffix: -1 link: 2
+  6 7
+  edge: { id: 9
+  edge: ~ id: 65
+Node: 100, parent: 8 string: ~ suffix: -1 link: 6
+  3 4
+  edge:   id: 103
+  edge: | id: 101
+  edge: ~ id: 4
+Node: 96, parent: 2 string:   suffix: -1 link: 25
+  39 40
+  edge: x id: 56
+  edge: | id: 97
+Node: 78, parent: 2 string: z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 54 link: 0
+  55 -1
+Node: 19, parent: 2 string: { suffix: -1 link: 17
+  7 8
+  edge:   id: 20
+  edge: ~ id: 10
+Node: 51, parent: 2 string: | suffix: -1 link: 8
+  2 3
+  edge: y id: 52
+  edge: z id: 81
+  edge: ~ id: 3
+Node: 1, parent: 2 string: }|~~|}{~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 0 link: 0
+  1 -1
+Node: 66, parent: 2 string: ~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 45 link: 0
+  46 -1
+Node: 104, parent: 6 string:   suffix: -1 link: 25
+  47 48
+  edge:   id: 105
+  edge: | id: 67
+Node: 113, parent: 6 string: x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 77 link: 0
+  78 -1
+Node: 14, parent: 6 string: y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 9 link: 0
+  10 -1
+Node: 28, parent: 6 string: z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 19 link: 0
+  20 -1
+Node: 40, parent: 6 string: | suffix: -1 link: 8
+  5 6
+  edge: { id: 41
+  edge: } id: 62
+  edge: ~ id: 102
+Node: 12, parent: 6 string: ~ suffix: -1 link: 6
+  4 5
+  edge: x id: 112
+  edge: y id: 13
+  edge: z id: 27
+  edge: | id: 5
+Node: 106, parent: 107 string:  z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 72 link: 0
+  74 -1
+Node: 108, parent: 107 string: z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 73 link: 0
+  75 -1
+Node: 22, parent: 30 string:  ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 15 link: 0
+  17 -1
+Node: 31, parent: 30 string: xx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 21 link: 0
+  23 -1
+Node: 87, parent: 109 string: zyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 60 link: 0
+  62 -1
+Node: 110, parent: 109 string: ~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 74 link: 0
+  76 -1
+Node: 68, parent: 98 string: z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 47 link: 0
+  49 -1
+Node: 99, parent: 98 string: ~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 67 link: 0
+  69 -1
+Node: 26, parent: 38 string: z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 17 link: 0
+  20 -1
+Node: 39, parent: 38 string: {z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 26 link: 0
+  29 -1
+Node: 115, parent: 114 string: xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 78 link: 0
+  81 -1
+Node: 58, parent: 114 string: ~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 40 link: 0
+  43 -1
+Node: 86, parent: 85 string: zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 59 link: 0
+  61 -1
+Node: 24, parent: 85 string: ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 16 link: 0
+  18 -1
+Node: 91, parent: 92 string: y} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 63 link: 0
+  65 -1
+Node: 93, parent: 92 string: } |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 64 link: 0
+  66 -1
+Node: 94, parent: 54 string:   suffix: -1 link: 96
+  39 40
+  edge: x id: 55
+  edge: | id: 95
+Node: 50, parent: 54 string: |y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 34 link: 0
+  36 -1
+Node: 84, parent: 89 string:  zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 58 link: 0
+  60 -1
+Node: 90, parent: 89 string: yy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 62 link: 0
+  64 -1
+Node: 46, parent: 70 string:  {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 30 link: 0
+  32 -1
+Node: 71, parent: 70 string: {{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 49 link: 0
+  51 -1
+Node: 77, parent: 79 string: z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 53 link: 0
+  55 -1
+Node: 80, parent: 79 string: |zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 55 link: 0
+  57 -1
+Node: 21, parent: 36 string: y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 14 link: 0
+  16 -1
+Node: 47, parent: 36 string: {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 31 link: 0
+  33 -1
+Node: 37, parent: 36 string: ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 25 link: 0
+  27 -1
+Node: 44, parent: 75 string: { {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 29 link: 0
+  31 -1
+Node: 76, parent: 75 string: }z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 52 link: 0
+  54 -1
+Node: 74, parent: 73 string: z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 51 link: 0
+  53 -1
+Node: 72, parent: 73 string: {z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 50 link: 0
+  52 -1
+Node: 11, parent: 60 string: |{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 7 link: 0
+  11 -1
+Node: 61, parent: 60 string: ~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 42 link: 0
+  46 -1
+Node: 83, parent: 82 string: y zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 57 link: 0
+  59 -1
+Node: 69, parent: 82 string: {{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 48 link: 0
+  50 -1
+Node: 43, parent: 42 string: z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 28 link: 0
+  30 -1
+Node: 16, parent: 42 string: }{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 11 link: 0
+  13 -1
+Node: 59, parent: 42 string: ~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 41 link: 0
+  43 -1
+Node: 9, parent: 64 string: {~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 5 link: 0
+  7 -1
+Node: 65, parent: 64 string: ~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 44 link: 0
+  46 -1
+Node: 103, parent: 100 string:    z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 70 link: 0
+  72 -1
+Node: 101, parent: 100 string: |~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 68 link: 0
+  70 -1
+Node: 4, parent: 100 string: ~|}{~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 2 link: 0
+  4 -1
+Node: 56, parent: 96 string: x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 38 link: 0
+  40 -1
+Node: 97, parent: 96 string: |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 66 link: 0
+  68 -1
+Node: 20, parent: 19 string:  y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 13 link: 0
+  15 -1
+Node: 10, parent: 19 string: ~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 6 link: 0
+  8 -1
+Node: 52, parent: 51 string: y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 35 link: 0
+  37 -1
+Node: 81, parent: 51 string: zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 56 link: 0
+  58 -1
+Node: 3, parent: 51 string: ~~|}{~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 1 link: 0
+  3 -1
+Node: 105, parent: 104 string:   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 71 link: 0
+  73 -1
+Node: 67, parent: 104 string: |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 46 link: 0
+  48 -1
+Node: 41, parent: 40 string: {z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 27 link: 0
+  29 -1
+Node: 62, parent: 40 string: } suffix: -1 link: 64
+  6 7
+  edge: { id: 7
+  edge: ~ id: 63
+Node: 102, parent: 40 string: ~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 69 link: 0
+  71 -1
+Node: 112, parent: 12 string: x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 76 link: 0
+  78 -1
+Node: 13, parent: 12 string: y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 8 link: 0
+  10 -1
+Node: 27, parent: 12 string: z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 18 link: 0
+  20 -1
+Node: 5, parent: 12 string: |}{~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 3 link: 0
+  5 -1
+Node: 55, parent: 94 string: x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 37 link: 0
+  40 -1
+Node: 95, parent: 94 string: |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 65 link: 0
+  68 -1
+Node: 7, parent: 62 string: {~~y|{}{ y ~~z yxx{ ~~{z{ {y}|y} x|{~~y~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 4 link: 0
+  7 -1
+Node: 63, parent: 62 string: ~ |z{{{z}z}|zy zzyyy} |~|~   z~~x|{xzzy|{zxxy   x|y|x}~ y{x}|}~z ~z}{ { yy{z||{ }|z|{~y}{~}{~x {z~~|z|x~y|x{ |{xyy}  }z |||y  }}|{{||{ }x ~yy}zy{~yzz{yy}{{zxx~z x z|}~ {}z|{yxy~xy zxzy{z~{y{y{y yzx~y~x}|z~ }x{|}}z~z|z}~|{{y|z} ~{zxz{zzz{x~{|}}x|x|}xx||xzxzzx  ~}z~}||zy} z~~~|xzy|{}~ |{z{}~z~|}}yy  y|zx~}}}} suffix: 43 link: 0
+  46 -1
