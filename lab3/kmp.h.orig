@@ -1,0 +1,59 @@
+#pragma once
+
+#include <vector>
+#include <string>
+
+
+
+
+
+
+
+std::vector<int> LongestSuffixes(const std::string & s) {
+	std::vector<int> T(s.size()+1);
+	int pos = 1;
+	int match = 0;
+	
+	while(pos+match< s.size()) {
+		
+		
+		
+		
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
