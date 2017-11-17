@@ -1,3 +1,8 @@
+/**
+ * Header for handling modular arithmetic in sizes up to max long long int/2.
+ * Implements GCD, addition, subtraction, multiplication and division in modular space,
+ * where the latter returns -1 iff the division is invalid (e.g. divisor is 0 or non-coprime with M.
+ */
 #pragma once
 
 #include <cassert>

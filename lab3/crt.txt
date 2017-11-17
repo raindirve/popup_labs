@@ -1,0 +1,13 @@
+chinese remainder theorem (a mod n = b mod m = x mod nm, find x)
+
+First we find numbers yi such that yi = 1 (mod mi) and yi = 0 (mod mj) for i != j. Then the sum a1 y1 + a2 y2 + ... + ar yr is the solution we're looking for.
+
+But how to find the yi? We can let yi = (m/mi)^phi(mi).
+
+Euler phi function
+
+For a positive integer n, phi(n) is the number of positive integers less than n and relatively prime to n. 
+
+Euler proved that if two numbers a and n are relatively prime, then a^phi(n) = 1 mod n. 
+
+For a prime p, phi(p) = p-1 and phi(p^k) = p^k - p^(k-1)

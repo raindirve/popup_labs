@@ -1,3 +1,16 @@
+/**
+ * Suffix tree for arbitrary strings of arbitrary size.
+ * 
+ * Should be linear time in all instances, but is kinda slow.
+ * 
+ * Specified for 8-bit chars, handles signed or unsigned.
+ * 
+ * Implements methods for searching and traversing the tree as well as finding all matches of a given string pattern.
+ * 
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
+
 #pragma once
 
 #include <algorithm>
@@ -55,10 +68,12 @@ struct SuffixTree {
             } else {
                 c = uc(s[i]);
             }
-            
+
+#ifdef DEBUG            
             //~ std::cerr << "===================" << "Printing tree on iteration " << i << " letter: " << char(c) << " edge: " << uc(c) << " ===================" << "\n";
             //~ std::cerr << "Active node: " << active_node << ", Active edge:" << active_edge << ", Remainder: " << remainder << "\n";
-            
+#endif            
+
             int suffix_link_from = 0;
             ++remainder;
             while (remainder > 0) {
@@ -67,22 +82,13 @@ struct SuffixTree {
                     active_pos = i;
                 }
 
-                //~ if (nodes[active_node].children.count(active_edge) == 0) { // if node does not have a child beginning with letter
                 if (nodes[active_node].children[active_edge] == 0) { // if node does not have a child beginning with letter
-                    //~ std::cerr << active_node << " " << active_edge << "\n";
-
-                    //~ std::cerr << "nochild\n";
-                    // add node
-                    //~ Node n(next_id,i,-1,active_node);
 
                     // new leaf
                     nodes.emplace(nodes.begin()+next_id,next_id,i,-1,active_node);
                     nodes[next_id].suffix = i - remainder + 1;
-                    //~ nodes.push_back(n);
                     nodes[active_node].children[active_edge] = next_id;
-                    //~ leaves.push_back(next_id);
                     ++next_id;
-                    // --
 
                     if (suffix_link_from != 0) { // set suffix link from
                         nodes[suffix_link_from].suffix_link = active_node;
@@ -102,14 +108,10 @@ struct SuffixTree {
 
                     if (active_length >= node_length) { // the needed node is past this one and we know it is not a leaf node because leaf nodes size always grows.
                         // set next node to active node
-                        //~ active_edge = uc(s[nodes[active_node].begin + node_length - 1]);
                         active_pos += node_length;
                         active_edge = uc(s[active_pos]);
                         active_length -= node_length;
                         active_node = node_idx;
-                        //~ std::cerr << active_edge << "\n";
-                        //~ std::cerr << "DOME " << active_length << " " << node_length << "\n";
-                        //~ std::cerr << "     " << i << " " << node.id << " " << node.begin << " " << node.end << "\n";
                         continue; // start again from next node
                     }
 
@@ -117,7 +119,6 @@ struct SuffixTree {
                     if ( uc(sc) == uc(c)) { // next position matches new char -> advance i
                         ++active_length;
                         if (suffix_link_from != 0) { // set suffix link from
-                            //~ std::cerr << "Added suffix link from " << suffix_link_from << " to " << active_node << " in traversal\n";
                             nodes[suffix_link_from].suffix_link = active_node;
                         }
                         suffix_link_from = active_node;
@@ -137,19 +138,15 @@ struct SuffixTree {
                     nodes.emplace(nodes.begin()+next_id,next_id,i,-1,split_idx);
                     nodes[next_id].suffix = i - remainder + 1;
                     nodes[split_idx].children[uc(c)] = next_id;
-                    //~ leaves.push_back(next_id);
                     ++next_id;
 
                     // the node we are splitting now starts after the split node
-                    //~ node.begin += active_length;
-                    nodes[node_idx].begin += active_length; // wat
+                    nodes[node_idx].begin += active_length;
                     int node_c = uc(s[nodes[node_idx].begin]); // first letter of node
                     nodes[split_idx].children[node_c] = node_idx;
-                    //~ node.parent = split_idx;
-                    nodes[node_idx].parent = split_idx; // megawat
+                    nodes[node_idx].parent = split_idx; 
 
                     if (suffix_link_from != 0) { // set suffix link from
-                        //~ std::cerr << "Added suffix link from " << suffix_link_from << " to " << active_node << " in split\n";
                         nodes[suffix_link_from].suffix_link = split_idx;
                     }
                     suffix_link_from = split_idx;
@@ -160,32 +157,23 @@ struct SuffixTree {
                     active_edge = s[i-remainder+1]; // previous letter that hasnt been added
                     active_pos = i - remainder+1;
                 } else {
-                    //~ std::cerr << "Following link: " << active_node << " to " << nodes[active_node].suffix_link << "\n";
                     active_node = nodes[active_node].suffix_link; // active node set to suffix link. suffix link == 0 means it goes back to root
 
                 }
             }
-
+#ifdef DEBUG
             //~ std::cerr << "anode " << active_node << ", " << "aedge " << active_edge << ", " << "alen " << active_length<< ", " << "remainder " << remainder << "\n";
             //~ dprint(*this);
+#endif
         }
 
     }
 
-    /*std::vector<int> _index_dfs(int nodeidx){
-        std::vector<int> vi;
-        std::stack<int> idxs;
-        idxs.push(nodeidx);
-        while(!idxs.empty()){
-            int idx = idxs.peek();
-            idxs.pop();
-            if(nodes[idx].children.empty()) vi.push_back(nodes[idx].suffix); else
-            for(auto a : nodes[idx].children){
-
-            }
-        }
-    }*/
-
+    /**
+     * Returns a vector of all starting positions of the given node.
+     * 
+     * The size of this vector will be equal to the number of matches to the string the node represents.
+     */
     std::vector<int> _suffix_dfs(int nodeidx) const{
         std::vector<int> vi;
         vi.reserve(1000000);
@@ -199,7 +187,6 @@ struct SuffixTree {
                 if(a!=0){
                     found = true;
                     idxs.push(a);
-                    //~ std::cerr << "Found a leaf node! idx " << a << std::endl;
                 }
             }
             if(!found) vi.push_back(nodes[idx].suffix);
@@ -207,8 +194,13 @@ struct SuffixTree {
         return vi;
     }
 
+    /**
+     * Returns the internal node index of the arrival node after matching 
+     * the pattern, or -1 if the word does not exist.
+     *
+     * O(|pattern|) since each character matches at most once.
+     */
     int find(const std::string &pattern) {
-        //~ std::cerr << "Trying to find " << pattern << "\n";
         int nidx = 0;
         int sidx = 0;
         //~ dprint(*this);
@@ -217,12 +209,11 @@ struct SuffixTree {
             if (nodes[nidx].children[uc(pattern[sidx])]) {
                 
                 nidx = nodes[nidx].children[uc(pattern[sidx])];
-
+#ifdef DEBUG
                 //~ std::string q = s.substr(nodes[nidx].begin, nodes[nidx].end - nodes[nidx].begin);
                 //~ std::cerr << "nidx is " << nidx << " on substr "  << q << "\n";
-                
                 //~ std::cerr << "begin " << nodes[nidx].begin << " end: " << nodes[nidx].end << " len: " << nodes[nidx].end - nodes[nidx].begin << '\n';
-                
+#endif                
                 
                 int end;
                 if(nodes[nidx].end<0) {
@@ -230,10 +221,11 @@ struct SuffixTree {
                 } else {
                     end = nodes[nidx].end;
                 }
-                
+#ifdef DEBUG                
                 //~ std::cerr << (end - nodes[nidx].begin) << " " << pattern.size() << "\n";
                 //~ std::cerr << "current substr " << q << '\n';
-                for (int i = 0; (i < (end - nodes[nidx].begin)) && (sidx+i < pattern.size()); ++i) {
+#endif                
+		for (int i = 0; (i < (end - nodes[nidx].begin)) && (sidx+i < pattern.size()); ++i) {
                     //~ std::cerr << s[i +nodes[nidx].begin] << " " << pattern[i+sidx]<< "\n";
                     if (s[i+nodes[nidx].begin] != pattern[sidx+i]) return -1;
                 }
@@ -244,23 +236,29 @@ struct SuffixTree {
                 return -1;
             }
         }
-        //~ std::cerr <<nidx << "\n"; 
         return nidx;
     }
 
     
-    
+    /**
+     * Returns a vector of all starting indexes of the 
+     *
+     * Linear time over O(|pattern|+k) where k is the number of matches. 
+     * 
+     * Could implement memoization to improve performance under multimatching / repeated polls.
+     */
     std::vector<int> match(const std::string &pattern) {
-        //~ std::cerr << "Trying to match " << pattern << "\n";
         int idx = find(pattern);
         //~ std::cerr << "idx " << idx << "\n";
         if (idx == -1) return std::vector<int>(); //no match :(
         //~ std::cerr<< idx << " " << _suffix_dfs(idx).size() << "\n";
         auto a = _suffix_dfs(idx);
+#ifdef DEBUG
         //~ std::string q = s.substr(nodes[idx].begin, nodes[idx].end - nodes[idx].begin);
         //~ std::cerr << q << "\n";
         //~ std::cerr<<" " << a.size() << "\n";
-        return a;//_suffix_dfs(idx);
+#endif
+      return a;//_suffix_dfs(idx);
     }
     
     
@@ -270,7 +268,7 @@ struct SuffixTree {
     std::string s;
 };
 
-
+//debug print tree to std::cerr
 #include <queue>
 void dprint(SuffixTree &st){
     std::string s = st.s;

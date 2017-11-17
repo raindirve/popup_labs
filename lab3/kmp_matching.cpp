@@ -4,8 +4,8 @@
 using namespace std;
 
 int main() {
-	//~ cin.sync_with_stdio(false);
-	//~ cin.tie(0);
+	cin.sync_with_stdio(false);
+	cin.tie(0);
 	std::string p;
 	std::string t;
 	
@@ -28,10 +28,6 @@ int main() {
 		std::getline(cin, p);
 	}
 	
-	
-	//~ for(char c = 1; c!=0; ++c) {
-		//~ std::cout << uc(c) << "\n";
-	//~ }
 	
 	
 	
