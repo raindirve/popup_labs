@@ -204,7 +204,10 @@ Point<double> normalize(const Point<T> & p) {
 	return p / norm(p);
 }
 
-
+template<typename T>
+Point<T> perp(const Point<T> & p) {
+	return Point<T>(-p.y, p.x);
+}
 
 
 

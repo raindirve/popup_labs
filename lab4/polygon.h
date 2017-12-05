@@ -19,6 +19,11 @@ struct Polygon {
 		return points.size();
 	}
 
+	bool is_simple() const {
+		// TODO
+		return true;
+	}
+
 	std::vector<Point<T>> points;
 	int id;
 };

@@ -27,6 +27,10 @@ struct Line {
 		return p2-p1;
 	}
 
+	Point<double> unit_vec() const {
+		return normalize(vec());
+	}
+
 	bool singular() const {
 		return p1 == p2;
 	}
@@ -36,6 +40,10 @@ struct Line {
 	bool segment;
 };
 
+template<typename T>
+bool operator==(const Line<T> & li1, const Line<T> & li2) {
+	return (li1.p1 == li2.p1) && (li1.p2 == li2.p2) && (li1.segment == li2.segment);
+}
 
 template<typename T>
 std::ostream & operator<<(std::ostream & os, const Line<T> & li) {
@@ -62,6 +70,7 @@ double dist(const Line<T> & li, const Point<T> & p) {
 }
 
 
+// this https://algs4.cs.princeton.edu/91primitives/ 
 // -1 id means no intersect
 template<typename T>
 Point<double> intersect(const Line<T> & li1, const Line<T> & li2) {
