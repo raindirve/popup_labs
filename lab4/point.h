@@ -8,7 +8,7 @@ typedef long long llong;
 
 template<typename T>
 struct Point {
-	Point(const T & x_ = T(0), const T & y_ = T(0), int id_ = 0) : x(x_), y(y_), id(id_) {}
+	Point(const T & x_ = T(), const T & y_ = T(), int id_ = 0) : x(x_), y(y_), id(id_) {}
 
 	template<typename U>
 	Point(const Point<U> & p) : x(p.x), y(p.y), id(p.id) {}

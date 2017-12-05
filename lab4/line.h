@@ -27,6 +27,10 @@ struct Line {
 		return p2-p1;
 	}
 
+	bool singular() const {
+		return p1 == p2;
+	}
+
 	Point<T> p1;
 	Point<T> p2;
 	bool segment;
@@ -41,6 +45,9 @@ std::ostream & operator<<(std::ostream & os, const Line<T> & li) {
 
 template<typename T>
 double dist(const Line<T> & li, const Point<T> & p) {
+	if (li.singular()) {
+		return dist(li.p1, p);
+	}
 	if (li.segment) {
 		if (dot(p - li.p1, li.p2 - li.p1) < 0) {
 			return dist(li.p1,p);
@@ -58,6 +65,30 @@ double dist(const Line<T> & li, const Point<T> & p) {
 // -1 id means no intersect
 template<typename T>
 Point<double> intersect(const Line<T> & li1, const Line<T> & li2) {
+	if (li1.singular()) {
+		if (li2.singular()) {
+			if (li1.p1 == li2.p2) {
+				return li1.p1;
+			} else {
+				return Point<double>(0, 0, -1);
+			}
+		} else {
+			if (dist(li2, li1.p1) == 0) {
+				return li1.p1;
+			} else {
+				return Point<double>(0, 0, -1);
+			}
+		}
+	} else {
+		if (li2.singular()) {
+			if (dist(li1, li2.p1) == 0) {
+				return li2.p1;
+			} else {
+				return Point<double>(0, 0, -1);
+			}
+		}
+	}
+
 	T denom = cross(li1.vec(),li2.vec());
 	if (denom == 0) { // lines parallel, need to check if same
 		if (cross(li1.vec(), li2.p1 - li1.p1) == 0) {
@@ -125,7 +156,23 @@ Point<double> intersect(const Line<T> & li1, const Line<T> & li2) {
 }
 
 
+template<typename T>
+double dist(const Line<T> & li1, const Line<T> & li2) {
+	Point<double> p = intersect(li1,li2);
+	if (p.id >= 0) {
+		//std::cout << "intersect " << p << "\n";
+		return 0;
+	}
 
+	double d = 999999999999;
+
+	d = std::min(std::abs(dist(li1, li2.p1)), d);
+	d = std::min(std::abs(dist(li1, li2.p2)), d);
+	d = std::min(std::abs(dist(li2, li1.p1)), d);
+	d = std::min(std::abs(dist(li2, li1.p2)), d);
+
+	return d;
+}
 
 
 
