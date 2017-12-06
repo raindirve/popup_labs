@@ -14,6 +14,9 @@ struct Polygon {
 	void add_point(const Point<T> & p) {
 		points.push_back(p);
 	}
+	void add_point(const T & x, const T & y) {
+		add_point(Point<T>(x,y));
+	}
 
 	size_t n_points() const {
 		return points.size();
@@ -47,28 +50,41 @@ double area(const Polygon<T> & poly) {
 		A += cross(poly.points[i], poly.points[i+1]);
 	}
 	A += cross(poly.points.back(), poly.points.front());
-	return A/2;
+	return A/2.0;
 }
 
+/**
+ * Checks if a point is in the polygon, on the boundary, or outside it.
+ * Returns 2, 1, and 0 respectively.
+ */
 template<typename T>
-bool point_in_polygon(const Polygon<T> & poly, const Point<T> & p) {
+int point_in_polygon(const Polygon<T> & poly, const Point<T> & p) {
 	double sum = 0;
-	for (int i = 0; i < poly.points.size() - 1; ++i) {
-		if (dist(Line<T>(poly.points[i], poly.points[i + 1], true), p) == 0) { // check if point on line
-			return true;
+	for (int i = 0; i < poly.n_points(); ++i) {
+		int inext = (i+1) % poly.n_points();
+		if (dist(Line<T>(poly.points[i], poly.points[inext], true), p) == 0) { // check if point on line
+			return 1;
 		}
-		sum += angle(poly.points[i]-p, poly.points[i + 1]-p);		
+		sum += angle(poly.points[i]-p, poly.points[inext]-p);		
+		//~ std::cout << "agle betewen " << poly.points[i]-p << "," << poly.points[inext]-p << " : " << angle(poly.points[i]-p, poly.points[inext]-p) << "\n";
 	}
-	if (dist(Line<T>(poly.points.back(), poly.points.front(), true), p) == 0) {
-		return true;
-	}
-	sum += angle(poly.points.back()-p, poly.points.front()-p);
-	//std::cout << sum << "\n";
-	return sum > 3.14;
+
+	//~ std::cout << "\tunabs sum " <<sum << "\n";
+	sum = std::abs(sum); //fix CW/CCW order
+	
+	return sum > 3.14 ? 2 : 0;
 }
 
 template<typename T>
 Polygon<T> convex_hull(const Polygon<T> & poly) {
+	if(poly.n_points() == 2) {
+		if(poly.points[0] == poly.points[1]) {
+			Polygon<T> out;
+			out.add_point(poly.points[0]);
+			return out;
+		}
+	}
+	
 	if(poly.n_points() < 3) return poly;
 
 	std::vector<std::pair<Point<T>, double > > angles;
@@ -105,7 +121,15 @@ Polygon<T> convex_hull(const Polygon<T> & poly) {
 		good_pts.push_back(angles[i].first);
 	}
 
-	if(good_pts.size() < 3) return good_pts;
+	if(good_pts.size() == 2) {
+		if(good_pts[0] == good_pts[1]) {
+			Polygon<T> out;
+			out.add_point(good_pts[0]);
+			return out;
+		}
+	}
+	
+	if(good_pts.size() < 3) return Polygon<T>(good_pts);
 
 	std::vector<Point<T>> stack;
 	stack.reserve(good_pts.size());

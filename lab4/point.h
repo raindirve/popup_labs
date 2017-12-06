@@ -2,9 +2,17 @@
 
 #include <cmath>
 #include <iostream>
+#include <cassert>
+#include <algoritm>
+#include <vector>
+#include <utility>
+
 
 typedef long long llong;
 
+
+template<typename T>
+T sq(const T & x){ return x*x; }
 
 template<typename T>
 struct Point {
@@ -166,6 +174,7 @@ double area(const Point<T> & p1, const Point<T> & p2, const Point<T> & p3) {
 
 template<typename T>
 double angle(const Point<T> & p) {
+	//~ assert(p.x != 0 || p.y != 0);
 	return atan2(p.y,p.x);
 }
 
@@ -209,7 +218,122 @@ Point<T> perp(const Point<T> & p) {
 	return Point<T>(-p.y, p.x);
 }
 
+//(-1, -1) fail state, i.e. only 1 points in set
+//requires sequential IDs on points vector
+// http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
+template<typename T>
+std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
+	if(from+1 == to) return pair<int, int>(-1, -1);
+	
+	if(points[from].x == points[to-1].x){
+		//linear stepping
+		T best_d = dist2(points[from], points[from+1]);
+		T d;
+		int best_idx = from;
+		for(int i = from+1; i < to-1; ++i){
+			d = dist2(points[i], points[i+1]);
+			if(d < best_d) {
+				best_d = d;
+				best_idx = i;
+			}
+			
+		}
+		return std::pair<int,int>(best_idx,best_idx+1); 
+	}
+	else{
+		int one_past_mid = to - (to-from)/2;
+		
+		std::pair<int, int> left = closest_pair(points, from, one_past_mid);
+		std::pair<int, int> right = closest_pair(points, one_past_mid, to);
+		T lbest = dist2(points[left.first], points[left.second]);
+		T rbest = dist2(points[right.first], points[right.second]);
+		T best = std::min(lbest, rbest);
+		
+		//~ //binsrch all x f.w. x+best on right side
+		//~ int hi = one_past_mid;
+		//~ int lo = from;
+		
+		
+		
+		
+		//~ T target = points[one_past_mid].x;
+		//~ while(lo < hi) {
+			//~ int mid = lo + (hi-lo)/2;
+			//~ if(sq(target - points[mid].x) < best) hi = mid;
+			//~ else lo = mid + 1;
+		//~ }
+		//~ int lstart = lo;
+		
+		//~ lo = from + (to-from)/2;
+		//~ hi = to;
+		
+		//~ target = points[one_past_mid-1].x;
+		//~ while(lo < hi) {
+			//~ int mid = lo + (hi-lo)/2;
+			//~ if(sq(target - points[mid].x) >= best) hi = mid;
+			//~ else lo = mid + 1;
+		//~ }
+		//~ int rend = lo;
+		
+		//~ std::vector<int> rstrip(rend-(one_past_mid));
+		//~ std::iota(rstrip.begin(), rstrip.end(), one_past_mid);
+		
+		//~ std::sort(rstrip.begin(), rstrip.end(), 
+			//~ [&points] (const int & i, const int & j) -> bool {
+				//~ const Point & lhs = points[i], rhs = points[j];
+				//~ return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
+			//~ }
+		//~ );
+		
+		std::vector<int> lstrip();//(one_past_mid)-lstart);
+		lstrip.reserve(to-from);
+		std::vector<int> rstrip();//(one_past_mid)-lstart);
+		rstrip.reserve(to-from);
+		//~ std::iota(lstrip.begin(), lstrip.end(), lstart);
+		
+		T target = points[one_past_mid].x;
+		for(auto a & : ysorted){
+			if(sq(points[a].x - target) < best){
+				if(a < one_past_mid)lstrip.push_back(a);
+				else rstrip.push_back(a);
+			}
+		}
+		
+		int rstart = 0, rend = 0;
+		
+		for(auto a & : lstrip){
+			
+		}
+		
+		
+		//~ std::sort(lstrip.begin(), lstrip.end(), 
+			//~ [&points] (const int & i, const int & j) -> bool {
+				//~ const Point & lhs = points[i], rhs = points[j];
+				//~ return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
+			//~ }
+		//~ );		
+		
+		
+		
+	}
+	
+}
 
+template<typename T>
+std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
+	std::sort(points.begin(), points.end());
+	std::vector<int> ysorted(points.size());
+	std::iota(ysorted.begin(),ysorted.end(),0);
+	std::sort(ysorted.begin(),ysorted.end(), 
+		[&points] (const int & i, const int & j) -> bool {
+			const Point & lhs = points[i], rhs = points[j];
+			return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
+		}
+	);
+	
+	
+	closest_pair(points,ysorted, 0, points.size());
+}
 
 
 
