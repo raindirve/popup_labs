@@ -359,10 +359,12 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		    ++rstart;
 		  }
 		  //invariant: can only exist <7 (<3?) points inside this rectangle - non-inclusive edges
+		  //cerr << "REND: " << rend << " , RSTART: " << rstart << endl;
 		  assert(rend - rstart < 7);
 
 		  for(size_t ri = rstart; ri < rend; ++ri){
-		    auto & b = points[ri];
+		    auto & b = points[rstrip[ri]];
+		    cerr << "\t Comparing " << a << " and " << b << endl;
 		    T cand = dist2(a, b);
 		    if(cand < best) {
 		      best = cand;
@@ -371,7 +373,7 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		  }
 		  
 		}
-		//cerr << "can shoot it" << endl;
+		cerr << "can shoot it" << endl;
 
 		return bestpair;
 		
