@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 // #include <cassert>
-#define assert(x) if(!(x)) exit(2)
+#define assert(x,i) if(!(x)) exit(i)
 #include <algorithm>
 #include <vector>
 #include <utility>
@@ -338,6 +338,14 @@ std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & xpoint
 	//std::cout << "n= " << n << "\n";
 	//std::cout << "left split sizes " << left_xpoints.size() << " " << left_ypoints.size() << "\n";
 	//std::cout << "right split sizes " << right_xpoints.size() << " " << right_ypoints.size() << "\n";
+
+	assert(left_xpoints.size() == left_ypoints.size(),1);
+	assert(right_xpoints.size() == right_ypoints.size(),2);
+
+	int diff = std::abs(int(left_xpoints.size()) - int(right_xpoints.size()));
+	assert(diff <= 1, 3);
+	diff = std::abs(int(left_ypoints.size()) - int(right_ypoints.size()));
+	assert(diff <= 1, 3);
 
 	// get smallest dist on left side, and right side
 	std::pair<Point<T>, Point<T>> left_result = closest_pair(left_xpoints,left_ypoints);

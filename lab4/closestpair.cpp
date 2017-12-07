@@ -1,6 +1,6 @@
 #include "point.h"
 #include <vector>
-
+#include <iomanip>
 // #define DEBUG
 // #define SEANW_VERIFY
 
@@ -38,7 +38,7 @@ int main(){
     //cerr << "u fool" << endl;
 
 	std::pair<Point<T>, Point<T>> a = closest_pair(points);
-    cout << a.first.x << ' ' << a.first.y << ' ' << a.second.x << ' ' << a.second.y << '\n';
+    cout << std::fixed << std::setprecision(2) << std::round(a.first.x*100)/100 << ' ' << std::round(a.first.y * 100) / 100 << ' ' << std::round(a.second.x * 100) / 100 << ' ' << std::round(a.second.y * 100) / 100 << '\n';
 
 
     //cerr << "i <3 u" << endl;
