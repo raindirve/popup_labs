@@ -2,7 +2,8 @@
 
 #include <cmath>
 #include <iostream>
-#include <cassert>
+// #include <cassert>
+#define assert(x) if(!(x)) exit(2)
 #include <algorithm>
 #include <vector>
 #include <utility>
