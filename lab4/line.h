@@ -1,9 +1,20 @@
+/**
+ * Class for a line in T^2, defined by two points.
+ * 
+ * Can be flagged as an infinite line or a line segment.
+ * Cannot presently represent rays.
+ *
+ * Implements mindistance (to line or point) and intersection with other lines.
+ *
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
 #pragma once
 
 #include "point.h"
 #include <vector>
 #include <algorithm> //sort
-
+#include <limits> //maxdouble
 template<typename T>
 struct Line {
 	Line(const Point<T> & p1_ = Point<T>(), const Point<T> & p2_ = Point<T>(), bool segment_ = false, int id_ = 0) : p1(p1_), p2(p2_), segment(segment_), id(id_) {}
@@ -54,6 +65,10 @@ std::ostream & operator<<(std::ostream & os, const Line<T> & li) {
 	return os;
 }
 
+/**
+ * Returns the minimal distance between the given line or segment
+ * and the given point.
+ */
 template<typename T>
 double dist(const Line<T> & li, const Point<T> & p) {
 	if (li.singular()) {
@@ -74,6 +89,12 @@ double dist(const Line<T> & li, const Point<T> & p) {
 
 // this https://algs4.cs.princeton.edu/91primitives/ 
 // -1 id means no intersect
+/**
+ * Returns the line or line segment that represents the intersection
+ * between the two lines.
+ * Returns a zero-line with Line.id==(-1) if the lines do not intersect.
+ * Note that the returned line may be a point, in which case Line.singular() -> true.
+ */
 template<typename T>
 Line<double> intersect(const Line<T> & li1, const Line<T> & li2) {	
 	static const Line<double> NOLINE(0,0,0,0,true,-1);
@@ -178,16 +199,19 @@ Line<double> intersect(const Line<T> & li1, const Line<T> & li2) {
 	return Line<double>(p, p, true);
 }
 
-
+/**
+ * Returns the smallest distance between two lines or line segments.
+ * May behave erratically when comparing a line and a line segment.
+ */
 template<typename T>
 double dist(const Line<T> & li1, const Line<T> & li2) {
-	Point<double> p = intersect(li1,li2);
+	Line<double> p = intersect(li1,li2);
 	if (p.id >= 0) {
 		//std::cout << "intersect " << p << "\n";
 		return 0;
 	}
 
-	double d = 999999999999;
+	double d = std::numeric_limits<double>::max();//999999999999;
 
 	d = std::min(std::abs(dist(li1, li2.p1)), d);
 	d = std::min(std::abs(dist(li1, li2.p2)), d);

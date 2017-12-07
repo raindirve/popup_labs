@@ -1,3 +1,12 @@
+/**
+ * 2D point class implementing all the basic operations on 
+ * a 2D point or vector as well as max # of colinear points
+ * and (WIP) closest pair.
+ * 
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
+
 #pragma once
 
 #include <cmath>
@@ -230,6 +239,10 @@ Point<T> perp(const Point<T> & p) {
 using std::cerr;
 using std::endl;
 
+/**
+ * WIP: Recursion function for calculating the pairwise closest pair in a set of points.
+ * Returns the indexes of the two points in the given array.
+ */
 template<typename T>
 std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
   //if(from+1 == to) return pair<int, int>(-1, -1);
@@ -404,6 +417,10 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 	
 }
 
+/**
+ * Wrapper function to calculate closest pair in a set of points.
+ * Returns the ID of the two pairwise closest points.
+ */
 template<typename T>
 std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
 	
@@ -426,7 +443,9 @@ std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
 }
 
 
-
+/**
+ * Returns the highest number of colinear points for any line in the supplied set of points.
+ */
 template<typename T>
 int colinear(const std::vector<Point<T>> & points) {
 	if (points.size() < 3) {

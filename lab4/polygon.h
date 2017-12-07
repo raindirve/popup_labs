@@ -1,3 +1,13 @@
+/**
+ * Class for a 2D polygon as a set of 2D points.
+ *
+ * Implements area calculation, point-in-polygon check,
+ * and convex hull generation.
+ * 
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
+
 #pragma once
 
 #include "point.h"
@@ -41,6 +51,9 @@ std::ostream & operator<<(std::ostream & os, const Polygon<T> & poly) {
 	return os;
 }
 
+/**
+ * Returns the area of the supplied polygon, as a double.
+ */
 template<typename T>
 double area(const Polygon<T> & poly) {
 	if(poly.points.size() < 3) return 0;
@@ -75,6 +88,10 @@ int point_in_polygon(const Polygon<T> & poly, const Point<T> & p) {
 	return sum > 3.14 ? 2 : 0;
 }
 
+/**
+ * Generates the convex hull of the supplied polygon,
+ * returned as a new polygon.
+ */
 template<typename T>
 Polygon<T> convex_hull(const Polygon<T> & poly) {
 	if(poly.n_points() == 2) {

@@ -1,4 +1,16 @@
-
+/**
+ * Implements a polynomial hash with configurable constants.
+ *
+ * The struct builds its hashes in O(n) arithmetic time and
+ * accepts queries of the hash of a substring in constant arithmetic.
+ *
+ * Note that arithmetic time can be O(log n) if constants are large
+ * enough to require safe modular multiplication. This is indicated
+ * by toggling comments in the code, and on by default.
+ *
+ * @author Michal Horemuz
+ * @author Sean Wenström
+ */
 
 #pragma once
 
@@ -32,15 +44,15 @@ template <typename T> //T collection, e.g. vector, string etc
 struct PolyHash{
 	
 	PolyHash(T s, ll bb = POPUP_PRIME, ll mm = POPUP_LPRIME) : data(s), M(mm), B(bb), forw(s.size()), bpow(s.size()) {
-		cerr << "=== CONSTRUCTION ===" << endl;
+		// cerr << "=== CONSTRUCTION ===" << endl;
 		ll hash = 0;
 		ll bp = 1;
 		for(size_t i = 0; i < s.size(); ++i){
 			bpow[i] = (bp = mod(bp*B, M));
 			forw[i] = (hash = mod(B*hash + data[i], M));
-			cerr << "for i = " << i << ", bpow[i] " << bpow[i] << ", forw[i] "<< forw[i] << endl;
+			// cerr << "for i = " << i << ", bpow[i] " << bpow[i] << ", forw[i] "<< forw[i] << endl;
 		}
-		cerr << "=== END CONSTRUCTION ===" << endl;
+		// cerr << "=== END CONSTRUCTION ===" << endl;
 	}
 	
 	/* hash of the substring from index FIRST to index LAST, inclusive */
@@ -50,10 +62,14 @@ struct PolyHash{
 		
 		
 		ll lhs = mult_mod(forw[first-1], bpow[last-first], M);
-		cerr << lhs << " is lhs" << endl;
-		cerr << forw[last] << " is forw_last" << endl;
-		return mod(forw[last] - lhs, M);
 		//ll lhs = mod(forw[first-1]*bpow[last+1-first], M);
+		
+    
+    // cerr << lhs << " is lhs" << endl;
+		// cerr << forw[last] << " is forw_last" << endl;
+		
+    
+    return mod(forw[last] - lhs, M);
 		
 		
 	}
