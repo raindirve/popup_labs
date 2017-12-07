@@ -233,7 +233,7 @@ using std::endl;
 template<typename T>
 std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
   //if(from+1 == to) return pair<int, int>(-1, -1);
-	cerr << "looking " << (to-from) << endl;
+  //cerr << "looking " << (to-from) << endl;
 	if(points[from].x == points[to-1].x){
 		//cerr << "blitz loop" << endl;
 
@@ -325,11 +325,11 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		std::vector<int> rstrip;//(one_past_mid)-lstart);
 		rstrip.reserve(to-from);
 		//~ std::iota(lstrip.begin(), lstrip.end(), lstart);
-		cerr << one_past_mid << "  " << from << "  " << to << endl;
+		//cerr << one_past_mid << "  " << from << "  " << to << endl;
 		T target = points[one_past_mid].x;
 		for(auto & a : ysorted){
 			if(sq(points[a].x - target) < best){
-				if(a < one_past_mid)lstrip.push_back(a);
+				if(a >= from && a < one_past_mid) lstrip.push_back(a);
 				//else rstrip.push_back(a);
 			}
 		}
@@ -337,7 +337,7 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		target = points[one_past_mid-1].x;
 		for(auto & a : ysorted){
 			if(sq(points[a].x - target) < best){
-				if(a > ( one_past_mid - 1 ) )rstrip.push_back(a);
+				if(a < to && a >= one_past_mid) rstrip.push_back(a);
 				//else rstrip.push_back(a);
 			}
 		}		
@@ -348,6 +348,17 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		//Linearly step through LSTRIP and RSTRIP, looking only at elements in RSTRIP less than |best| (Chebyshev) distance from the current left element
 
 		size_t rstart = 0, rend = 0;
+
+#ifdef DEBUG		
+		cerr << "lstrip: " << endl;
+		for(auto & asdf : lstrip){
+		  cerr << '\t' << asdf << ": " << points[asdf] << endl;
+		}
+		cerr << "rstrip: " << endl;
+		for(auto & asdf : rstrip){
+		  cerr << '\t' << asdf << ": " << points[asdf] << endl;
+		}
+#endif	  
 		
 		for(auto & idx : lstrip){
 		  auto & a = points[idx];
@@ -360,22 +371,13 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 		    ++rstart;
 		  }
 		  //invariant: can only exist <7 (<3?) points inside this rectangle - non-inclusive edges
-		  cerr << "REND: " << rend << " , RSTART: " << rstart << endl;
-		  assert(rend - rstart < 7);
+		  //cerr << "REND: " << rend << " , RSTART: " << rstart << endl;
+		  assert(rend - rstart < 3);
 
-		  cerr << "lstrip: " << endl;
-		  for(auto & asdf : lstrip){
-		    cerr << '\t' << asdf << ": " << points[asdf] << endl;
-		  }
-		  cerr << "rstrip: " << endl;
-		  for(auto & asdf : rstrip){
-		    cerr << '\t' << asdf << ": " << points[asdf] << endl;
-		  }
-		  
 		  for(size_t ri = rstart; ri < rend; ++ri){
 		    auto & b = points[rstrip[ri]];
 		    T cand = dist2(a, b);
-		    cerr << "\t Comparing " << a <<  " and " << b << " with " << cand << " vs " << best << endl;
+		    //cerr << "\t Comparing " << a <<  " and " << b << " with " << cand << " vs " << best << endl;
 		    if(cand < best) {
 		      //cerr << "\tindex" << endl;
 		      best = cand;

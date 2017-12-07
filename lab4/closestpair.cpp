@@ -20,8 +20,8 @@ typedef Point<T> P;
 
 
 int main(){
-  ios::sync_with_stdio(false);
-  cin.tie(NULL);
+  //ios::sync_with_stdio(false);
+  //cin.tie(NULL);
   vector<P> points;
   points.reserve(100000);
   llong n;
