@@ -8,6 +8,7 @@
 #include <vector>
 #include <utility>
 #include <unordered_map>
+#include <numeric>
 
 using std::pair;
 using std::vector;
@@ -222,208 +223,6 @@ Point<T> perp(const Point<T> & p) {
 	return Point<T>(-p.y, p.x);
 }
 
-//(-1, -1) fail state, i.e. only 1 points in set
-//requires sequential IDs on points vector
-// http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
-
-
-using std::cerr;
-using std::endl;
-
-template<typename T>
-std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
-  //if(from+1 == to) return pair<int, int>(-1, -1);
-  //cerr << "looking " << (to-from) << endl;
-	if(points[from].x == points[to-1].x){
-		//cerr << "blitz loop" << endl;
-
-	        //linear stepping
-		T best_d = dist2(points[from], points[from+1]);
-		T d;
-		int best_idx = from;
-		for(size_t i = from+1; i < to-1; ++i){
-			d = dist2(points[i], points[i+1]);
-			if(d < best_d) {
-				best_d = d;
-				best_idx = i;
-			}
-			
-		}
-		return std::pair<int,int>(best_idx,best_idx+1); 
-	} else if(to-from <= 4){ //brute force
-		assert(to-from > 1);
-		//cerr << "brute force" << endl;
-		T best = dist2(points[from], points[from+1]);
-		pair<int, int> rv(from, from+1);
-		for(int i = from; i < to; ++i){
-			for(int j = i+1; j < to; ++j){
-			  
-				T d = dist2(points[i], points[j]);
-				//cerr << "\t BF comparing " << points[i] << i << " with " << points[j] << j << " with best=" << best << ", dist=" << d << endl;
-				if(d < best){
-					rv.first = i, rv.second = j;
-					best = d;
-				}
-			}
-		}
-		//cerr << "\t RV " << rv.first << ":" << rv.second << endl;
-		return rv;
-		
-	}
-	else{
-	  //cerr << "this planet" << endl;
-		int one_past_mid = to - (to-from)/2;
-		
-		std::pair<int, int> left = closest_pair(points, ysorted, from, one_past_mid);
-		std::pair<int, int> right = closest_pair(points, ysorted, one_past_mid, to);
-		T lbest = dist2(points[left.first], points[left.second]);
-		T rbest = dist2(points[right.first], points[right.second]);
-		T best = std::min(lbest, rbest);
-		std::pair<int, int>& bestpair = left;
-		if(lbest > best) bestpair = right;
-		
-		//~ //binsrch all x f.w. x+best on right side
-		//~ int hi = one_past_mid;
-		//~ int lo = from;
-		
-		
-		
-		
-		//~ T target = points[one_past_mid].x;
-		//~ while(lo < hi) {
-			//~ int mid = lo + (hi-lo)/2;
-			//~ if(sq(target - points[mid].x) < best) hi = mid;
-			//~ else lo = mid + 1;
-		//~ }
-		//~ int lstart = lo;
-		
-		//~ lo = from + (to-from)/2;
-		//~ hi = to;
-		
-		//~ target = points[one_past_mid-1].x;
-		//~ while(lo < hi) {
-			//~ int mid = lo + (hi-lo)/2;
-			//~ if(sq(target - points[mid].x) >= best) hi = mid;
-			//~ else lo = mid + 1;
-		//~ }
-		//~ int rend = lo;
-		
-		//~ std::vector<int> rstrip(rend-(one_past_mid));
-		//~ std::iota(rstrip.begin(), rstrip.end(), one_past_mid);
-		
-		//~ std::sort(rstrip.begin(), rstrip.end(), 
-			//~ [&points] (const int & i, const int & j) -> bool {
-				//~ const Point & lhs = points[i], rhs = points[j];
-				//~ return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
-			//~ }
-		//~ );
-
-		//cerr << "to search way" << endl;
-
-		std::vector<int> lstrip;//(one_past_mid)-lstart);
-		lstrip.reserve(to-from);
-		std::vector<int> rstrip;//(one_past_mid)-lstart);
-		rstrip.reserve(to-from);
-		//~ std::iota(lstrip.begin(), lstrip.end(), lstart);
-		//cerr << one_past_mid << "  " << from << "  " << to << endl;
-		T target = points[one_past_mid].x;
-		for(auto & a : ysorted){
-			if(sq(points[a].x - target) < best){
-				if(a >= from && a < one_past_mid) lstrip.push_back(a);
-				//else rstrip.push_back(a);
-			}
-		}
-
-		target = points[one_past_mid-1].x;
-		for(auto & a : ysorted){
-			if(sq(points[a].x - target) < best){
-				if(a < to && a >= one_past_mid) rstrip.push_back(a);
-				//else rstrip.push_back(a);
-			}
-		}		
-		if(lstrip.empty() || rstrip.empty()) return bestpair;
-		//cerr << "only my railgun" << endl;
-
-
-		//Linearly step through LSTRIP and RSTRIP, looking only at elements in RSTRIP less than |best| (Chebyshev) distance from the current left element
-
-		size_t rstart = 0, rend = 0;
-
-#ifdef DEBUG		
-		cerr << "lstrip: " << endl;
-		for(auto & asdf : lstrip){
-		  cerr << '\t' << asdf << ": " << points[asdf] << endl;
-		}
-		cerr << "rstrip: " << endl;
-		for(auto & asdf : rstrip){
-		  cerr << '\t' << asdf << ": " << points[asdf] << endl;
-		}
-#endif	  
-		
-		for(auto & idx : lstrip){
-		  auto & a = points[idx];
-		  while(rend < rstrip.size() && (a.y > points[rstrip[rend]].y || sq(points[rstrip[rend]].y - a.y) < best)){
-		    //faulty rend: we want to look at, or have already passed, this point
-		    ++rend;
-		  }
-		  while(rstart < rend && points[rstrip[rstart]].y < a.y && sq(points[rstrip[rstart]].y - a.y) >= best){
-		    //uninteresting rstart: more than [best] distance lower than current point
-		    ++rstart;
-		  }
-		  //invariant: can only exist <7 (<3?) points inside this rectangle - non-inclusive edges
-		  //cerr << "REND: " << rend << " , RSTART: " << rstart << endl;
-		  assert(rend - rstart < 3);
-
-		  for(size_t ri = rstart; ri < rend; ++ri){
-		    auto & b = points[rstrip[ri]];
-		    T cand = dist2(a, b);
-		    //cerr << "\t Comparing " << a <<  " and " << b << " with " << cand << " vs " << best << endl;
-		    if(cand < best) {
-		      //cerr << "\tindex" << endl;
-		      best = cand;
-		      bestpair.first = lstrip[idx], bestpair.second = rstrip[ri];
-		    }
-		  }
-		  
-		}
-		//cerr << "can shoot it" << endl;
-
-		return bestpair;
-		
-		
-		//~ std::sort(lstrip.begin(), lstrip.end(), 
-			//~ [&points] (const int & i, const int & j) -> bool {
-				//~ const Point & lhs = points[i], rhs = points[j];
-				//~ return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
-			//~ }
-		//~ );		
-		
-		
-		
-	}
-	
-}
-
-template<typename T>
-std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
-	
-	std::sort(points.begin(), points.end());
-	
-	std::vector<int> ysorted(points.size());
-	std::iota(ysorted.begin(),ysorted.end(),0);
-	std::sort(ysorted.begin(),ysorted.end(), 
-		[&points] (const int & i, const int & j) -> bool {
-			const Point<T> & lhs = points[i], rhs = points[j];
-			return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
-		}
-	);
-	
-	
-	std::pair<int, int> rv = closest_pair(points,ysorted, 0, points.size());
-	rv.first = points[rv.first].id;
-	rv.second = points[rv.second].id;
-	return rv;
-}
 
 
 
@@ -462,3 +261,135 @@ int colinear(const std::vector<Point<T>> & points) {
 }
 
 
+//(-1, -1) fail state, i.e. only 1 points in set
+//requires sequential IDs on points vector
+// http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
+template<typename T>
+std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & points) {
+	
+
+	std::vector<Point<T>> xpoints = points;
+	std::vector<int> ysorted(points.size());
+	std::iota(ysorted.begin(), ysorted.end(), 0);
+
+	std::sort(xpoints.begin(), xpoints.end());
+	std::sort(ysorted.begin(), ysorted.end(),
+		[&xpoints](const int & i, const int & j) -> bool {
+			const Point<T> & lhs = xpoints[i], rhs = xpoints[j];
+			return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
+		}
+	);
+	//std::sort(ypoints.begin(), ypoints.end(),
+	//	[](const Point<T> & lhs, const Point<T> & rhs) -> bool {
+	//		return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
+	//	}
+	//);
+
+	std::pair<Point<T>, Point<T>> rv = closest_pair(xpoints, ysorted);
+	return rv;
+}
+
+template<typename T>
+std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & xpoints, const std::vector<int> & ysorted) {
+	size_t n = xpoints.size();
+	//std::cout << n << "\n";
+	if(n < 4) { // brute force
+		T best = dist2(xpoints[0], xpoints[1]); // know that n is at least 2.
+		std::pair<int, int> best_idxs(0, 1);
+		for (int i = 0; i < n; ++i) {
+			for (int j = i + 1; j < n; ++j) {
+				T d = dist2(xpoints[i], xpoints[j]);
+				if (d < best) {
+					best_idxs.first = i;
+					best_idxs.second = j;
+					best = d;
+				}
+			}
+		}
+		//std::cout << "returning " << best << " " << best_idxs.first << " " << best_idxs.second << "\n";
+		return std::pair<Point<T>, Point<T>>(xpoints[best_idxs.first], xpoints[best_idxs.second]);
+	}
+
+	int mid = n/2; // index of midpoint belongs to right
+	//std::cout << n << " " << mid << "\n";
+
+	std::vector<Point<T> > left_xpoints(xpoints.begin(), xpoints.begin() + mid);
+	std::vector<Point<T> > right_xpoints(xpoints.begin() + mid, xpoints.end());
+
+	std::vector<int> left_ypoints(mid);
+	std::vector<int> right_ypoints(n-(mid));
+
+	
+
+	int lidx = 0;
+	int ridx = 0;
+
+	// sort ypoints to go left or right, based on x coordinate of mid point
+	for (int i = 0; i < n; ++i) {
+		if(ysorted[i] < mid) {
+			left_ypoints[lidx] = ysorted[i];
+			++lidx;
+		} else {
+			right_ypoints[ridx] = ysorted[i]-mid;
+			++ridx;
+		}
+	}
+	
+	//std::cout << "n= " << n << "\n";
+	//std::cout << "left split sizes " << left_xpoints.size() << " " << left_ypoints.size() << "\n";
+	//std::cout << "right split sizes " << right_xpoints.size() << " " << right_ypoints.size() << "\n";
+
+	// get smallest dist on left side, and right side
+	std::pair<Point<T>, Point<T>> left_result = closest_pair(left_xpoints,left_ypoints);
+	std::pair<Point<T>, Point<T>> right_result = closest_pair(right_xpoints,right_ypoints);
+	T lbest = dist2(left_result.first, left_result.second);
+	T rbest = dist2(right_result.first, right_result.second);
+
+	// record best pair
+	std::pair<Point<T>, Point<T>> best_pair;
+	T best;
+	if(lbest < rbest) {
+		best = lbest;
+		best_pair = left_result;
+	} else {
+		best = rbest;
+		best_pair = right_result;
+	}
+
+	// compare cross distances
+
+	// get all points closer than best to middle line, sorted by y
+	std::vector<Point<T>> overlap_strip;
+	for (int i = 0; i < n; ++i) {
+		if (sq(xpoints[ysorted[i]].x - xpoints[mid].x) < best) {
+			overlap_strip.push_back(xpoints[ysorted[i]]);
+		}
+	}
+
+	T best_overlap = best;
+	int best_i;
+	int best_j;
+	for (int i = 0; i < overlap_strip.size(); ++i) {
+		for (int j = i + 1; j < overlap_strip.size(); ++j) { // at most 6 times
+			if(sq(overlap_strip[i].y - overlap_strip[j].y) >= best_overlap) {
+				break; // y is sorted, so if this condition happens then we dont ahve to check rest of y
+			} else {
+				T d = dist2(overlap_strip[i], overlap_strip[j]);
+				if (d < best_overlap) {
+					best_overlap = d;
+					best_i = i;
+					best_j = j;
+				}
+			}
+		}
+	}
+
+	if(best_overlap < best) {
+		best_pair.first = overlap_strip[best_i];
+		best_pair.second = overlap_strip[best_j];
+	}
+
+	//std::cout << "returning from " << n << " " << mid << "\n";
+	return best_pair;
+
+}

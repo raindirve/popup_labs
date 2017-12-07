@@ -1,5 +1,6 @@
 #include "point.h"
-#include <bits/stdc++.h>
+#include <vector>
+
 // #define DEBUG
 // #define SEANW_VERIFY
 
@@ -20,8 +21,8 @@ typedef Point<T> P;
 
 
 int main(){
-  //ios::sync_with_stdio(false);
-  //cin.tie(NULL);
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
   vector<P> points;
   points.reserve(100000);
   llong n;
@@ -36,8 +37,8 @@ int main(){
     }
     //cerr << "u fool" << endl;
 
-    pii a = closest_pair(points);
-    cout << points[a.first].x << ' ' << points[a.first].y << ' ' << points[a.second].x << ' ' << points[a.second].y << '\n';
+	std::pair<Point<T>, Point<T>> a = closest_pair(points);
+    cout << a.first.x << ' ' << a.first.y << ' ' << a.second.x << ' ' << a.second.y << '\n';
 
 
     //cerr << "i <3 u" << endl;
