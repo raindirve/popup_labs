@@ -271,8 +271,13 @@ int colinear(const std::vector<Point<T>> & points) {
 }
 
 
-//(-1, -1) fail state, i.e. only 1 points in set
-//requires sequential IDs on points vector
+// takes a vector of points, and returns a the pair of closest points. 0 or 1 points not handled.
+// Divide and conquer: split plane to left and right sides, such that half point lie on either side
+// Recursively find closest point on either side.
+// Merge results of either side using a y-sorted list of points (which is maintained thoughout the whole process)
+// O(nlogn) - we sort teh points based on x and y. The recursive funciton is run logn times. Each run performs O(n) ops.
+// Merging is done in O(n) time using the sorted y vector. Since we know the current minimum distance, we can eliminate a large number of points based on y coordinate (y1-y2<best_dist), 
+// such that for each point, only a constant number of points need to be checked against
 // http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
 template<typename T>
 std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & points) {
@@ -289,11 +294,6 @@ std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & points
 			return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
 		}
 	);
-	//std::sort(ypoints.begin(), ypoints.end(),
-	//	[](const Point<T> & lhs, const Point<T> & rhs) -> bool {
-	//		return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
-	//	}
-	//);
 
 	std::pair<Point<T>, Point<T>> rv = closest_pair(xpoints, ysorted);
 	return rv;
@@ -302,7 +302,6 @@ std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & points
 template<typename T>
 std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & xpoints, const std::vector<int> & ysorted) {
 	size_t n = xpoints.size();
-	//std::cout << n << "\n";
 	if(n < 4) { // brute force
 		T best = dist2(xpoints[0], xpoints[1]); // know that n is at least 2.
 		std::pair<int, int> best_idxs(0, 1);
@@ -316,12 +315,10 @@ std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & xpoint
 				}
 			}
 		}
-		//std::cout << "returning " << best << " " << best_idxs.first << " " << best_idxs.second << "\n";
 		return std::pair<Point<T>, Point<T>>(xpoints[best_idxs.first], xpoints[best_idxs.second]);
 	}
 
 	int mid = n/2; // index of midpoint belongs to right
-	//std::cout << n << " " << mid << "\n";
 
 	std::vector<Point<T> > left_xpoints(xpoints.begin(), xpoints.begin() + mid);
 	std::vector<Point<T> > right_xpoints(xpoints.begin() + mid, xpoints.end());
@@ -344,10 +341,7 @@ std::pair<Point<T>, Point<T>> closest_pair(const std::vector<Point<T> > & xpoint
 			++ridx;
 		}
 	}
-	
-	//std::cout << "n= " << n << "\n";
-	//std::cout << "left split sizes " << left_xpoints.size() << " " << left_ypoints.size() << "\n";
-	//std::cout << "right split sizes " << right_xpoints.size() << " " << right_ypoints.size() << "\n";
+
 
 	assert(left_xpoints.size() == left_ypoints.size(),1);
 	assert(right_xpoints.size() == right_ypoints.size(),2);
