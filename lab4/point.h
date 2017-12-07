@@ -3,10 +3,10 @@
 #include <cmath>
 #include <iostream>
 #include <cassert>
-#include <algoritm>
+#include <algorithm>
 #include <vector>
 #include <utility>
-
+#include <unordered_map>
 
 typedef long long llong;
 
@@ -223,7 +223,7 @@ Point<T> perp(const Point<T> & p) {
 // http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
 template<typename T>
 std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
-	if(from+1 == to) return pair<int, int>(-1, -1);
+	if(from+1 == to) return std::pair<int, int>(-1, -1);
 	
 	if(points[from].x == points[to-1].x){
 		//linear stepping
@@ -337,6 +337,38 @@ std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
 
 
 
+template<typename T>
+int colinear(const std::vector<Point<T>> & points) {
+	if (points.size() < 3) {
+		return int(points.size());
+	}
+	
+	int nmax = 0;
+	for (int i = 0; i < points.size(); ++i) {
+		std::unordered_map<double, int> angles;
+		angles.reserve(points.size()-i);
+		for (int j = i + 1; j < points.size(); ++j) {
+			double theta = angle(points[j] - points[i]);
+			if (theta < 0) {
+				theta = angle(points[i] - points[j]);
+			}
 
+			//std::cout << "angle " << points[i] << " " << points[j] << " " << theta << "\n";
+
+			if (angles.count(theta) > 0) {
+				angles[theta] += 1;
+			} else {
+				angles[theta] = 2;
+			}
+		}
+
+		
+		for (auto & kv : angles) {
+			nmax = std::max(nmax, kv.second);
+		}
+	}
+
+	return nmax;
+}
 
 
