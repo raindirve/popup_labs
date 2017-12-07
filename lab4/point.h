@@ -364,11 +364,12 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 
 		  for(size_t ri = rstart; ri < rend; ++ri){
 		    auto & b = points[rstrip[ri]];
-		    cerr << "\t Comparing " << a << " and " << b << endl;
 		    T cand = dist2(a, b);
+		    cerr << "\t Comparing " << a <<  " and " << b << " with " << cand << " vs " << best << endl;
 		    if(cand < best) {
+		      cerr << "\tindex" << endl;
 		      best = cand;
-		      bestpair.first = idx, bestpair.second = ri;
+		      bestpair.first = lstrip[idx], bestpair.second = rstrip[ri];
 		    }
 		  }
 		  
