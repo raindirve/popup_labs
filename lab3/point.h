@@ -1,12 +1,3 @@
-/**
- * 2D point class implementing all the basic operations on 
- * a 2D point or vector as well as max # of colinear points
- * and (WIP) closest pair.
- * 
- * @author Michal Horemuz
- * @author Sean Wenström
- */
-
 #pragma once
 
 #include <cmath>
@@ -233,9 +224,8 @@ Point<T> perp(const Point<T> & p) {
 }
 
 
-/**
- * Returns the highest number of colinear points for any line in the supplied set of points.
- */
+
+
 template<typename T>
 int colinear(const std::vector<Point<T>> & points) {
 	if (points.size() < 3) {
