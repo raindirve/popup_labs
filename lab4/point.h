@@ -8,6 +8,9 @@
 #include <utility>
 #include <unordered_map>
 
+using std::pair;
+using std::vector;
+
 typedef long long llong;
 
 
@@ -221,16 +224,23 @@ Point<T> perp(const Point<T> & p) {
 //(-1, -1) fail state, i.e. only 1 points in set
 //requires sequential IDs on points vector
 // http://www.geeksforgeeks.org/closest-pair-of-points-onlogn-implementation/
+
+
+using std::cerr;
+using std::endl;
+
 template<typename T>
 std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const std::vector<int> & ysorted, size_t from, size_t to) {
-	if(from+1 == to) return std::pair<int, int>(-1, -1);
-	
+  //if(from+1 == to) return pair<int, int>(-1, -1);
+  //cerr << "looking " << (to-from) << endl;
 	if(points[from].x == points[to-1].x){
-		//linear stepping
+		//cerr << "blitz loop" << endl;
+
+	        //linear stepping
 		T best_d = dist2(points[from], points[from+1]);
 		T d;
 		int best_idx = from;
-		for(int i = from+1; i < to-1; ++i){
+		for(size_t i = from+1; i < to-1; ++i){
 			d = dist2(points[i], points[i+1]);
 			if(d < best_d) {
 				best_d = d;
@@ -239,15 +249,37 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 			
 		}
 		return std::pair<int,int>(best_idx,best_idx+1); 
+	} else if(to-from <= 4){ //brute force
+		assert(to-from > 1);
+		//cerr << "brute force" << endl;
+		T best = dist2(points[from], points[from+1]);
+		pair<int, int> rv(from, from+1);
+		for(int i = from; i < to; ++i){
+			for(int j = i+1; j < to; ++j){
+			  
+				T d = dist2(points[i], points[j]);
+				//cerr << "\t BF comparing " << points[i] << i << " with " << points[j] << j << " with best=" << best << ", dist=" << d << endl;
+				if(d < best){
+					rv.first = i, rv.second = j;
+					best = d;
+				}
+			}
+		}
+		//cerr << "\t RV " << rv.first << ":" << rv.second << endl;
+		return rv;
+		
 	}
 	else{
+	  cerr << "this planet" << endl;
 		int one_past_mid = to - (to-from)/2;
 		
-		std::pair<int, int> left = closest_pair(points, from, one_past_mid);
-		std::pair<int, int> right = closest_pair(points, one_past_mid, to);
+		std::pair<int, int> left = closest_pair(points, ysorted, from, one_past_mid);
+		std::pair<int, int> right = closest_pair(points, ysorted, one_past_mid, to);
 		T lbest = dist2(points[left.first], points[left.second]);
 		T rbest = dist2(points[right.first], points[right.second]);
 		T best = std::min(lbest, rbest);
+		std::pair<int, int>& bestpair = left;
+		if(lbest > best) bestpair = right;
 		
 		//~ //binsrch all x f.w. x+best on right side
 		//~ int hi = one_past_mid;
@@ -284,26 +316,64 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 				//~ return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
 			//~ }
 		//~ );
-		
-		std::vector<int> lstrip();//(one_past_mid)-lstart);
+
+		//cerr << "to search way" << endl;
+
+		std::vector<int> lstrip;//(one_past_mid)-lstart);
 		lstrip.reserve(to-from);
-		std::vector<int> rstrip();//(one_past_mid)-lstart);
+		std::vector<int> rstrip;//(one_past_mid)-lstart);
 		rstrip.reserve(to-from);
 		//~ std::iota(lstrip.begin(), lstrip.end(), lstart);
-		
+		//cerr << one_past_mid << "  " << from << "  " << to << endl;
 		T target = points[one_past_mid].x;
-		for(auto a & : ysorted){
+		for(auto & a : ysorted){
 			if(sq(points[a].x - target) < best){
 				if(a < one_past_mid)lstrip.push_back(a);
-				else rstrip.push_back(a);
+				//else rstrip.push_back(a);
 			}
 		}
+
+		target = points[one_past_mid-1].x;
+		for(auto & a : ysorted){
+			if(sq(points[a].x - target) < best){
+				if(a > one_past_mid)rstrip.push_back(a);
+				//else rstrip.push_back(a);
+			}
+		}		
+		if(lstrip.empty() || rstrip.empty()) return bestpair;
+		//cerr << "only my railgun" << endl;
+
+
+		//Linearly step through LSTRIP and RSTRIP, looking only at elements in RSTRIP less than |best| (Chebyshev) distance from the current left element
+
+		size_t rstart = 0, rend = 0;
 		
-		int rstart = 0, rend = 0;
-		
-		for(auto a & : lstrip){
-			
+		for(auto & idx : lstrip){
+		  auto & a = points[idx];
+		  while(rend < rstrip.size() && (a.y > points[rstrip[rend]].y || sq(points[rstrip[rend]].y - a.y) < best)){
+		    //faulty rend: we want to look at, or have already passed, this point
+		    ++rend;
+		  }
+		  while(rstart < rend && points[rstrip[rstart]].y < a.y && sq(points[rstrip[rstart]].y - a.y) >= best){
+		    //uninteresting rstart: more than [best] distance lower than current point
+		    ++rstart;
+		  }
+		  //invariant: can only exist <7 (<3?) points inside this rectangle - non-inclusive edges
+		  assert(rend - rstart < 7);
+
+		  for(size_t ri = rstart; ri < rend; ++ri){
+		    auto & b = points[ri];
+		    T cand = dist2(a, b);
+		    if(cand < best) {
+		      best = cand;
+		      bestpair.first = idx, bestpair.second = ri;
+		    }
+		  }
+		  
 		}
+		//cerr << "can shoot it" << endl;
+
+		return bestpair;
 		
 		
 		//~ std::sort(lstrip.begin(), lstrip.end(), 
@@ -321,18 +391,23 @@ std::pair<int, int> closest_pair(const std::vector<Point<T> > & points, const st
 
 template<typename T>
 std::pair<int, int> closest_pair(std::vector<Point<T> > points) {
+	
 	std::sort(points.begin(), points.end());
+	
 	std::vector<int> ysorted(points.size());
 	std::iota(ysorted.begin(),ysorted.end(),0);
 	std::sort(ysorted.begin(),ysorted.end(), 
 		[&points] (const int & i, const int & j) -> bool {
-			const Point & lhs = points[i], rhs = points[j];
+			const Point<T> & lhs = points[i], rhs = points[j];
 			return lhs.y < rhs.y || (!(rhs.y < lhs.y) && lhs.x < rhs.x);
 		}
 	);
 	
 	
-	closest_pair(points,ysorted, 0, points.size());
+	std::pair<int, int> rv = closest_pair(points,ysorted, 0, points.size());
+	rv.first = points[rv.first].id;
+	rv.second = points[rv.second].id;
+	return rv;
 }
 
 
