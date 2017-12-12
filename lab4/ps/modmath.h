@@ -2,9 +2,6 @@
  * Header for handling modular arithmetic in sizes up to max long long int/2.
  * Implements GCD, addition, subtraction, multiplication and division in modular space,
  * where the latter returns -1 iff the division is invalid (e.g. divisor is 0 or non-coprime with M.
- * 
- * @author Michal Horemuz
- * @author Sean Wenström
  */
 #pragma once
 
@@ -91,20 +88,7 @@ T div_mod(const T & a, const T & b, const T & m) {
 	}
 }
 
-template<typename T> 
-T exp_mod(T b, T e, const T & m) {
-    if(m == 1) return 0;
-    
-    T r = 1;
-    b = mod(b, m);
-    
-    while(e > 0){
-      if(e & 1) r = mult_mod(r, b, m);
-      e >>= 1;
-      b = mult_mod(b, b, m);
-    }
-    return r;
-}
+
 
 
 

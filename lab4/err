@@ -1,0 +1,10 @@
+In file included from closestpair.cpp:1:0:
+point.h: In instantiation of ‘std::pair<int, int> closest_pair(const std::vector<Point<T> >&, const std::vector<int>&, size_t, size_t) [with T = double; size_t = long unsigned int]’:
+point.h:375:21:   required from ‘std::pair<int, int> closest_pair(std::vector<Point<T> >) [with T = double]’
+closestpair.cpp:38:32:   required from here
+point.h:324:16: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     while(rend < rstrip.size() && (a.y > points[rstrip[rend]].y || sq(points[rstrip[rend]].y - a.y) < best)){
+                ^
+point.h:320:5: warning: unused variable ‘xbest’ [-Wunused-variable]
+   T xbest = -1;
+     ^
